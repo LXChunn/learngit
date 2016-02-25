@@ -15,6 +15,9 @@
 @import HealthKit;
 
 @interface AAPLAppDelegate()
+{
+    NSString* str;
+}
 
 @property (nonatomic) HKHealthStore *healthStore;
 
