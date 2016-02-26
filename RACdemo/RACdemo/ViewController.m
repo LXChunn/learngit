@@ -35,8 +35,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    
     self.textUser.delegate = self;
     self.textPassword.delegate = self;
     
@@ -87,12 +85,38 @@
     
     //响应式登陆
     [[self.loadBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+        self.textUser.text = @"";
+        self.textPassword.text = @"";
+        
+        self.textUser.backgroundColor = [UIColor whiteColor];
+        self.textPassword.backgroundColor = [UIColor whiteColor];
+        
+        
+        [self.textUser resignFirstResponder];
+        [self.textPassword resignFirstResponder];
         NSLog(@"deng lu zhong");
     }];
     
+    //通知传值
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:@"postData" object:nil]subscribeNext:^(NSNotification* notification) {
+        NSLog(@"name=%@",notification.name);
+        NSLog(@"arr=%@",notification.object);
+        self.textUser.text = notification.object[0];
+//        self.textPassword.text = notification.object[1];
+    }];
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:@"postDataRed" object:nil]subscribeNext:^(NSNotification* notification) {
+        NSLog(@"name=%@",notification.name);
+        NSLog(@"arr=%@",notification.object);
+        
+        self.textPassword.text = notification.object[0];
+    }];
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+    
+    
+    self.navigationController.navigationBar.hidden = YES;
+    
     //keyboard 通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHidden:) name:UIKeyboardWillHideNotification object:nil];

@@ -16,6 +16,8 @@
 		4FF3A74E1C7E8DDA008F59EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FF3A74C1C7E8DDA008F59EE /* LaunchScreen.storyboard */; };
 		4FF3A7591C7E8DDA008F59EE /* RACdemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF3A7581C7E8DDA008F59EE /* RACdemoTests.m */; };
 		4FF3A7641C7E8DDA008F59EE /* RACdemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF3A7631C7E8DDA008F59EE /* RACdemoUITests.m */; };
+		735AAE9B1C807412005DFA58 /* secondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 735AAE9A1C807412005DFA58 /* secondViewController.m */; };
+		735AAE9E1C809F99005DFA58 /* threeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 735AAE9D1C809F99005DFA58 /* threeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,10 @@
 		4FF3A7631C7E8DDA008F59EE /* RACdemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RACdemoUITests.m; sourceTree = "<group>"; };
 		4FF3A7651C7E8DDA008F59EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		53F4516CA49BE3268DFCFCFA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		735AAE991C807412005DFA58 /* secondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = secondViewController.h; sourceTree = "<group>"; };
+		735AAE9A1C807412005DFA58 /* secondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = secondViewController.m; sourceTree = "<group>"; };
+		735AAE9C1C809F99005DFA58 /* threeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = threeViewController.h; sourceTree = "<group>"; };
+		735AAE9D1C809F99005DFA58 /* threeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = threeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +131,10 @@
 			isa = PBXGroup;
 			children = (
 				4FF3A73F1C7E8DDA008F59EE /* main.m */,
+				735AAE991C807412005DFA58 /* secondViewController.h */,
+				735AAE9A1C807412005DFA58 /* secondViewController.m */,
+				735AAE9C1C809F99005DFA58 /* threeViewController.h */,
+				735AAE9D1C809F99005DFA58 /* threeViewController.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -345,7 +355,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				735AAE9B1C807412005DFA58 /* secondViewController.m in Sources */,
 				4FF3A7461C7E8DDA008F59EE /* ViewController.m in Sources */,
+				735AAE9E1C809F99005DFA58 /* threeViewController.m in Sources */,
 				4FF3A7431C7E8DDA008F59EE /* AppDelegate.m in Sources */,
 				4FF3A7401C7E8DDA008F59EE /* main.m in Sources */,
 			);

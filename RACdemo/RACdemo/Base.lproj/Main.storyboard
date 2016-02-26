@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="1ZA-ta-bVA">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -46,12 +46,14 @@
                                 <state key="normal" title="登陆"/>
                                 <connections>
                                     <action selector="changeBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ofL-Mh-t3F"/>
+                                    <segue destination="VdB-HS-ZJc" kind="push" id="yEA-Be-TJW"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                     </view>
+                    <navigationItem key="navigationItem" id="jdh-Bt-dsQ"/>
                     <connections>
                         <outlet property="loadBtn" destination="q62-th-aRG" id="IcD-EG-KkF"/>
                         <outlet property="textPassword" destination="K7A-a4-upr" id="jte-Wr-1MT"/>
@@ -60,7 +62,110 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="31" y="240"/>
+            <point key="canvasLocation" x="-48" y="240"/>
+        </scene>
+        <!--Three View Controller-->
+        <scene sceneID="FXa-LK-2cB">
+            <objects>
+                <viewController id="5L9-Q5-L6y" customClass="threeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zzc-UN-4jU"/>
+                        <viewControllerLayoutGuide type="bottom" id="h1G-vA-iDY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bnQ-bF-IBs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vSs-lT-43h">
+                                <rect key="frame" x="112" y="137" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.81412259620000005" green="0.20777601009999999" blue="0.19982640400000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hJl-KK-Xgg">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="0IO-FJ-HLU">
+                            <connections>
+                                <action selector="backToBlue:" destination="5L9-Q5-L6y" id="DDd-Ke-679"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textRed" destination="vSs-lT-43h" id="1wF-bm-j4M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eMR-qT-et7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="709" y="240"/>
+        </scene>
+        <!--LXC-->
+        <scene sceneID="T3d-yj-aqP">
+            <objects>
+                <viewController id="VdB-HS-ZJc" customClass="secondViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YNJ-Gr-vRg"/>
+                        <viewControllerLayoutGuide type="bottom" id="SLZ-8L-Nwx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qMI-ZF-UzO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VBp-i8-pQN">
+                                <rect key="frame" x="99" y="117" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ne9-3D-JXg">
+                                <rect key="frame" x="99" y="168" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="90X-mw-blr">
+                                <rect key="frame" x="99" y="220" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.30758686390000001" green="0.21650521580000001" blue="0.81412259620000005" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="LXC" id="C3X-ak-0hS">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="SCX-Zb-8bf">
+                            <connections>
+                                <action selector="backToOne:" destination="VdB-HS-ZJc" id="N0R-fb-OVV"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="下一页" id="byF-iT-LqN">
+                            <connections>
+                                <segue destination="5L9-Q5-L6y" kind="push" id="tGP-uK-OIR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textOne" destination="VBp-i8-pQN" id="asv-3T-i0C"/>
+                        <outlet property="textThree" destination="90X-mw-blr" id="Vhd-JB-1jF"/>
+                        <outlet property="textTwo" destination="Ne9-3D-JXg" id="Vga-lt-TC3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S8g-or-nXp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="327" y="240"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="P0r-Tg-cbm">
+            <objects>
+                <navigationController id="1ZA-ta-bVA" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6WY-v4-ie0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="StX-gP-Ja9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hRL-aU-VUc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-428" y="240"/>
         </scene>
     </scenes>
 </document>
