@@ -102,7 +102,7 @@ NSString *const AAPLJournalViewControllerTableViewCellReuseIdentifier = @"cell";
 - (void)addFoodItem:(AAPLFoodItem *)foodItem {
     // Create a new food correlation for the given food item.
     HKCorrelation *foodCorrelationForFoodItem = [self foodCorrelationForFoodItem:foodItem];
-    
+    NSLog(@"%@",foodCorrelationForFoodItem);
     [self.healthStore saveObject:foodCorrelationForFoodItem withCompletion:^(BOOL success, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (success) {
@@ -136,7 +136,7 @@ NSString *const AAPLJournalViewControllerTableViewCellReuseIdentifier = @"cell";
     NSDictionary *foodCorrelationMetadata = @{HKMetadataKeyFoodType: foodItem.name};
 
     HKCorrelation *foodCorrelation = [HKCorrelation correlationWithType:foodType startDate:now endDate:now objects:energyConsumedSamples metadata:foodCorrelationMetadata];
-    
+    NSLog(@"%@",foodCorrelation);
     return foodCorrelation;
 }
 

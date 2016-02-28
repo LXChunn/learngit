@@ -175,7 +175,6 @@
 }
 
 #pragma mark - Convenience
-
 - (NSPredicate *)predicateForSamplesToday {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     
@@ -200,7 +199,6 @@
     else {
         BMR = 655 + (9.6 * weightInKilograms) + (1.8 * heightInCentimeters) - (4.7 * ageInYears);
     }
-
     return BMR;
 }
 

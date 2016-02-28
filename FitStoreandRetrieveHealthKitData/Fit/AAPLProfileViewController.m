@@ -46,7 +46,7 @@ typedef NS_ENUM(NSInteger, AAPLProfileViewControllerTableViewIndex) {
     if ([HKHealthStore isHealthDataAvailable]) {
         NSSet *writeDataTypes = [self dataTypesToWrite];
         NSSet *readDataTypes = [self dataTypesToRead];
-        
+        NSLog(@"%@=%@",writeDataTypes,readDataTypes);
         [self.healthStore requestAuthorizationToShareTypes:writeDataTypes readTypes:readDataTypes completion:^(BOOL success, NSError *error) {
             if (!success) {
                 NSLog(@"You didn't allow HealthKit to access these read/write data types. In your app, try to handle this error gracefully when a user decides not to provide access. The error was: %@. If you're using a simulator, try it on a device.", error);
@@ -120,13 +120,13 @@ typedef NS_ENUM(NSInteger, AAPLProfileViewControllerTableViewIndex) {
     lengthFormatter.unitStyle = NSFormattingUnitStyleLong;
     
     NSLengthFormatterUnit heightFormatterUnit = NSLengthFormatterUnitInch;
-    NSString *heightUnitString = [lengthFormatter unitStringFromValue:10 unit:heightFormatterUnit];
+    NSString *heightUnitString = [lengthFormatter unitStringFromValue:1 unit:heightFormatterUnit];
     NSString *localizedHeightUnitDescriptionFormat = NSLocalizedString(@"Height (%@)", nil);
     
     self.heightUnitLabel.text = [NSString stringWithFormat:localizedHeightUnitDescriptionFormat, heightUnitString];
 
     HKQuantityType *heightType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeight];
-    
+    NSLog(@"%@",heightType);
     // Query to get the user's latest height, if it exists.
     [self.healthStore aapl_mostRecentQuantitySampleOfType:heightType predicate:nil completion:^(HKQuantity *mostRecentQuantity, NSError *error) {
         if (!mostRecentQuantity) {

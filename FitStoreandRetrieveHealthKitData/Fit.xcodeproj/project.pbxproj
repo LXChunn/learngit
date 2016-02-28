@@ -187,6 +187,7 @@
 				ORGANIZATIONNAME = Apple;
 				TargetAttributes = {
 					4ED4B7F419283674002C7E33 = {
+						DevelopmentTeam = QZ37382XQE;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
 								enabled = 1;
@@ -344,6 +345,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Fit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.exmple.apple-samplecode.Fit";
 				PRODUCT_NAME = Fit;
 				PROVISIONING_PROFILE = "";
 				VALIDATE_PRODUCT = NO;
@@ -361,6 +363,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Fit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.exmple.apple-samplecode.Fit";
 				PRODUCT_NAME = Fit;
 				PROVISIONING_PROFILE = "";
 				VALIDATE_PRODUCT = NO;
