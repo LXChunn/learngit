@@ -40,11 +40,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F5E35B11C83D24F000A5672 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4F5E35B51C83D2D2000A5672 /* HKHealthStore+LXCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HKHealthStore+LXCExtension.h"; sourceTree = "<group>"; };
+		4F5E35B61C83D399000A5672 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		4F5E35BD1C83D45C000A5672 /* LXCEnergyCt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCEnergyCt.h; sourceTree = "<group>"; };
+		4F5E35BE1C83D47C000A5672 /* LXCfootCt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCfootCt.h; sourceTree = "<group>"; };
+		4F5E35C41C83D6EF000A5672 /* LXCProfileCt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCProfileCt.h; sourceTree = "<group>"; };
 		735AAEEA1C819306005DFA58 /* healthKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = healthKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		735AAEEE1C819306005DFA58 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		735AAEF01C819306005DFA58 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		735AAEF11C819306005DFA58 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		735AAEF31C819306005DFA58 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		735AAEF41C819306005DFA58 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		735AAEF71C819306005DFA58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		735AAEF91C819306005DFA58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -56,15 +60,11 @@
 		735AAF0E1C819306005DFA58 /* healthKitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = healthKitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		735AAF121C819306005DFA58 /* healthKitUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = healthKitUITests.m; sourceTree = "<group>"; };
 		735AAF141C819306005DFA58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		735AAF201C819982005DFA58 /* LXCProfileCt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCProfileCt.h; sourceTree = "<group>"; };
 		735AAF211C819982005DFA58 /* LXCProfileCt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCProfileCt.m; sourceTree = "<group>"; };
-		735AAF261C819C08005DFA58 /* HKHealthStore+LXCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HKHealthStore+LXCExtension.h"; sourceTree = "<group>"; };
 		735AAF271C819C08005DFA58 /* HKHealthStore+LXCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HKHealthStore+LXCExtension.m"; sourceTree = "<group>"; };
 		735AAF2D1C81B50E005DFA58 /* healthKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = healthKit.entitlements; sourceTree = "<group>"; };
 		735AAF2E1C81B524005DFA58 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		736492361C8200A200AC9EFC /* LXCEnergyCt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCEnergyCt.h; sourceTree = "<group>"; };
 		736492371C8200A200AC9EFC /* LXCEnergyCt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCEnergyCt.m; sourceTree = "<group>"; };
-		736492391C829EA000AC9EFC /* LXCfootCt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCfootCt.h; sourceTree = "<group>"; };
 		7364923A1C829EA000AC9EFC /* LXCfootCt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCfootCt.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,11 +119,11 @@
 			isa = PBXGroup;
 			children = (
 				735AAF2D1C81B50E005DFA58 /* healthKit.entitlements */,
-				735AAEF01C819306005DFA58 /* AppDelegate.h */,
+				4F5E35B11C83D24F000A5672 /* AppDelegate.h */,
 				735AAEF11C819306005DFA58 /* AppDelegate.m */,
-				735AAF261C819C08005DFA58 /* HKHealthStore+LXCExtension.h */,
+				4F5E35B51C83D2D2000A5672 /* HKHealthStore+LXCExtension.h */,
 				735AAF271C819C08005DFA58 /* HKHealthStore+LXCExtension.m */,
-				735AAEF31C819306005DFA58 /* ViewController.h */,
+				4F5E35B61C83D399000A5672 /* ViewController.h */,
 				735AAEF41C819306005DFA58 /* ViewController.m */,
 				735AAEF61C819306005DFA58 /* Main.storyboard */,
 				735AAEF91C819306005DFA58 /* Assets.xcassets */,
@@ -138,11 +138,11 @@
 			isa = PBXGroup;
 			children = (
 				735AAEEE1C819306005DFA58 /* main.m */,
-				735AAF201C819982005DFA58 /* LXCProfileCt.h */,
+				4F5E35C41C83D6EF000A5672 /* LXCProfileCt.h */,
 				735AAF211C819982005DFA58 /* LXCProfileCt.m */,
-				736492361C8200A200AC9EFC /* LXCEnergyCt.h */,
+				4F5E35BD1C83D45C000A5672 /* LXCEnergyCt.h */,
 				736492371C8200A200AC9EFC /* LXCEnergyCt.m */,
-				736492391C829EA000AC9EFC /* LXCfootCt.h */,
+				4F5E35BE1C83D47C000A5672 /* LXCfootCt.h */,
 				7364923A1C829EA000AC9EFC /* LXCfootCt.m */,
 			);
 			name = "Supporting Files";
