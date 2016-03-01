@@ -8,13 +8,15 @@
 
 #import "ViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-
+#import "AFNetworking.h"
+#import "UIKit+AFNetworking.h"
 
 @interface ViewController ()<UITextFieldDelegate>
 {
     int count;
 }
 @property (nonatomic,strong)RACCommand* command;
+@property (weak, nonatomic) IBOutlet UIImageView *imageVw;
 
 @property (weak, nonatomic) IBOutlet UITextField *textUser;
 @property (weak, nonatomic) IBOutlet UITextField *textPassword;
@@ -29,6 +31,7 @@
 @property (nonatomic,strong)RACSignal* signal;
 @property (weak, nonatomic) IBOutlet UILabel *showObsever;
 
+@property (nonatomic,strong)NSURLSession* session;
 
 @end
 
@@ -228,6 +231,16 @@
     }];
     
     self.loadBtn.rac_command = self.command;//保证执行过程中，不会执行其他操作
+    
+    [[[self fetchImageURL]map:^id(NSData* value) {
+        self.imageVw.image = [UIImage imageWithData:value];
+        NSLog(@"data = %@",value);
+        return value;
+    }]subscribeNext:^(NSData* x) {
+        
+    }];
+    
+
 }
 #pragma mark - 延时5秒
 - (void)delayFiveSecond
@@ -294,7 +307,42 @@
     
     RAC(self,LXC) = [RACSignal merge:@[startSkip,completedSkip,failedSkip]];
 }
-
+#pragma mark - 网络请求
+- (RACSignal*)fetchImageURL
+{
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        
+        NSString* imageUrl = @"http://b.hiphotos.baidu.com/image/pic/item/0823dd54564e925838c205c89982d158ccbf4e26.jpg";
+        
+        NSURL* url = [NSURL URLWithString:imageUrl];
+        NSURLRequest* request = [NSURLRequest requestWithURL:url];
+        self.session = [NSURLSession sharedSession];
+        NSURLSessionDataTask* dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            NSLog(@"%@",response);
+            
+            if (!error) {
+                [subscriber sendNext:data];
+                
+            }else{
+                [subscriber sendError:error];
+            }
+            
+            [subscriber sendCompleted];
+        }];
+        
+        [dataTask resume];
+        
+        return [RACDisposable disposableWithBlock:^{
+            [dataTask cancel];
+            NSLog(@"========================");
+        }];
+        
+    }];
+    
+    
+    
+}
 
 - (void)keyboardWillHidden:(NSNotification*)notification
 {
