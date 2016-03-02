@@ -1,28 +1,37 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "0C571ED756146A111CD521285C4B324902FF1EB7",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "0C571ED756146A111CD521285C4B324902FF1EB7+++38CDFBD",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "0C571ED756146A111CD521285C4B324902FF1EB7" : 0
+    "0C571ED756146A111CD521285C4B324902FF1EB7+++5AB959E" : 0,
+    "0C571ED756146A111CD521285C4B324902FF1EB7+++38CDFBD" : 0,
+    "0C571ED756146A111CD521285C4B324902FF1EB7+++0D38EED" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "AA74D1C4-6DE8-4423-ADA6-D2D575605B7E",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "0C571ED756146A111CD521285C4B324902FF1EB7" : ".."
+    "0C571ED756146A111CD521285C4B324902FF1EB7+++5AB959E" : "..",
+    "0C571ED756146A111CD521285C4B324902FF1EB7+++38CDFBD" : "learngit\/",
+    "0C571ED756146A111CD521285C4B324902FF1EB7+++0D38EED" : ".."
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "healthKit",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "healthKit\/healthKit.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:LXChunn\/learngit.git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0C571ED756146A111CD521285C4B324902FF1EB7"
-    },
-    {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/LXChunn\/learngit.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0C571ED756146A111CD521285C4B324902FF1EB7"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0C571ED756146A111CD521285C4B324902FF1EB7+++0D38EED"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:LXChunn\/learngit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0C571ED756146A111CD521285C4B324902FF1EB7+++38CDFBD"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:LXChunn\/learngit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0C571ED756146A111CD521285C4B324902FF1EB7+++5AB959E"
     }
   ]
 }

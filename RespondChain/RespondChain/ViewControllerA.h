@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewControllerA : UIViewController
-
+{
+    NSString* a;
+}
 
 @end
 

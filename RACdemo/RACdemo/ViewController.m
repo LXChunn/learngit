@@ -103,6 +103,10 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+    NSLog(@"%@",[NSHomeDirectory() stringByAppendingString:@""]);
+    
+    
+    
     self.navigationController.navigationBar.hidden = YES;
     
     //keyboard 通知

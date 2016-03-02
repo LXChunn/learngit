@@ -21,40 +21,45 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     if ([HKHealthStore isHealthDataAvailable]) {
-        NSSet* writeDataTypes = [NSSet setWithObjects:
-                                 [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryEnergyConsumed],
-                                 [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierActiveEnergyBurned],
-                                 [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeight],
-                                 [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyMass],
-                                 [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount],
-                                 nil];
+//        NSSet* writeDataTypes = [NSSet setWithObjects:
+//                                 [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierActiveEnergyBurned],
+//                                 nil];
         NSSet* readDataTypes = [NSSet setWithObjects:
-                                [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryEnergyConsumed],
-                                [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierActiveEnergyBurned],
-                                [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeight],
-                                [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyMass],
-                                [HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierDateOfBirth],
-                                [HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierBiologicalSex],
                                 [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount],
                                 nil];
         //由于HealthKit存储了大量的用户敏感信息，App如果需要访问HealthKit中的数据，首先需要请求用户权限。权限分为读取与读写权限（苹果将读写权限称为share）。请求权限还是比较简单的，可以直接使用requestAuthorizationToShareTypes: readTypes: completion: 方法
-        NSLog(@"%@=%@",writeDataTypes,readDataTypes);
+        NSLog(@"=%@",readDataTypes);
         
-        [self.healthStore requestAuthorizationToShareTypes:writeDataTypes readTypes:readDataTypes completion:^(BOOL success, NSError * _Nullable error) {
+        [self.healthStore requestAuthorizationToShareTypes:nil readTypes:readDataTypes completion:^(BOOL success, NSError * _Nullable error) {
             if (!success) {
                 NSLog(@"You didn't allow HealthKit to access these read/write data types. In your app, try to handle this error gracefully when a user decides not to provide access. The error was: %@. If you're using a simulator, try it on a device.", error);
                 return;
             }
             //主线程更新界面
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self updateUserFootLb];
+                [self updateRealTimeStepCount];
             });
         }];
-        
-        
     }
 
 }
+- (void)updateRealTimeStepCount
+{
+    HKSampleType* sampleType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
+    
+    HKObserverQuery* query = [[HKObserverQuery alloc]initWithSampleType:sampleType predicate:nil updateHandler:^(HKObserverQuery * _Nonnull query, HKObserverQueryCompletionHandler  _Nonnull completionHandler, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"an error occured while setting up stepCount observe.");
+            abort();
+        }
+        
+        [self updateUserFootLb];
+    }];
+    
+    [self.healthStore executeQuery:query];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -76,17 +81,21 @@
 - (void)updateUserFootLb
 {
     HKQuantityType* footType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
-//    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSCalendar* calendar = [NSCalendar currentCalendar];
     
-//    NSDate* now = [NSDate date];
-//    
-//    NSDate* startDate = [calendar startOfDayForDate:now];
-//    NSDate* endDate = [calendar dateByAddingUnit:NSCalendarUnitDay value:1 toDate:startDate options:0];
-//    
-//    NSPredicate* predicate = [HKQuery predicateForSamplesWithStartDate:startDate endDate:endDate options:HKQueryOptionStrictStartDate];
+    NSDate* now = [NSDate date];
+    NSDateComponents* components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
+    [components setHour:0];
+    [components setMinute:0];
+    [components setSecond:0];
+    
+    NSDate* startDate = [calendar dateFromComponents:components];
+    NSDate* endDate = [calendar dateByAddingUnit:NSCalendarUnitDay value:1 toDate:startDate options:0];
+    
+    NSPredicate* predicate = [HKQuery predicateForSamplesWithStartDate:startDate endDate:endDate options:HKQueryOptionNone];
     
     
-    [self.healthStore aapl_mostRecentQuantitySampleOfType:footType predicate:nil completion:^(HKQuantity *mostRecentQuantity, NSError *error) {
+    [self.healthStore aapl_mostRecentQuantitySampleOfType:footType predicate:predicate completion:^(HKQuantity *mostRecentQuantity, NSError *error) {
         if (!mostRecentQuantity) {
             NSLog(@"获取步数失败，%@",error);
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -95,10 +104,6 @@
             
         }else{
             NSLog(@"获取步数成功");
-//            double userFoot = [mostRecentQuantity doubleValueForUnit:[HKUnit footUnit]];
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                self.footValueLb.text = [NSNumberFormatter localizedStringFromNumber:@(userFoot) numberStyle:NSNumberFormatterNoStyle];
-//            });
             NSLog(@"%@",[mostRecentQuantity valueForKey:@"_value"]);
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.footValueLb.text = [NSString stringWithFormat:@"%@",[mostRecentQuantity valueForKey:@"_value"]];

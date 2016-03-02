@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F5E37181C86C0A6000A5672 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5E37171C86C0A6000A5672 /* HealthKit.framework */; };
 		735AAEEF1C819306005DFA58 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 735AAEEE1C819306005DFA58 /* main.m */; };
 		735AAEF21C819306005DFA58 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 735AAEF11C819306005DFA58 /* AppDelegate.m */; };
 		735AAEF51C819306005DFA58 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 735AAEF41C819306005DFA58 /* ViewController.m */; };
@@ -17,7 +18,6 @@
 		735AAF131C819306005DFA58 /* healthKitUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 735AAF121C819306005DFA58 /* healthKitUITests.m */; };
 		735AAF221C819982005DFA58 /* LXCProfileCt.m in Sources */ = {isa = PBXBuildFile; fileRef = 735AAF211C819982005DFA58 /* LXCProfileCt.m */; };
 		735AAF281C819C08005DFA58 /* HKHealthStore+LXCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 735AAF271C819C08005DFA58 /* HKHealthStore+LXCExtension.m */; };
-		735AAF2F1C81B524005DFA58 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 735AAF2E1C81B524005DFA58 /* HealthKit.framework */; };
 		736492381C8200A200AC9EFC /* LXCEnergyCt.m in Sources */ = {isa = PBXBuildFile; fileRef = 736492371C8200A200AC9EFC /* LXCEnergyCt.m */; };
 		7364923B1C829EA000AC9EFC /* LXCfootCt.m in Sources */ = {isa = PBXBuildFile; fileRef = 7364923A1C829EA000AC9EFC /* LXCfootCt.m */; };
 /* End PBXBuildFile section */
@@ -46,6 +46,7 @@
 		4F5E35BD1C83D45C000A5672 /* LXCEnergyCt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCEnergyCt.h; sourceTree = "<group>"; };
 		4F5E35BE1C83D47C000A5672 /* LXCfootCt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCfootCt.h; sourceTree = "<group>"; };
 		4F5E35C41C83D6EF000A5672 /* LXCProfileCt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCProfileCt.h; sourceTree = "<group>"; };
+		4F5E37171C86C0A6000A5672 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		735AAEEA1C819306005DFA58 /* healthKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = healthKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		735AAEEE1C819306005DFA58 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		735AAEF11C819306005DFA58 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -63,7 +64,6 @@
 		735AAF211C819982005DFA58 /* LXCProfileCt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCProfileCt.m; sourceTree = "<group>"; };
 		735AAF271C819C08005DFA58 /* HKHealthStore+LXCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HKHealthStore+LXCExtension.m"; sourceTree = "<group>"; };
 		735AAF2D1C81B50E005DFA58 /* healthKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = healthKit.entitlements; sourceTree = "<group>"; };
-		735AAF2E1C81B524005DFA58 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		736492371C8200A200AC9EFC /* LXCEnergyCt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCEnergyCt.m; sourceTree = "<group>"; };
 		7364923A1C829EA000AC9EFC /* LXCfootCt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCfootCt.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,7 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				735AAF2F1C81B524005DFA58 /* HealthKit.framework in Frameworks */,
+				4F5E37181C86C0A6000A5672 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,7 +97,7 @@
 		735AAEE11C819306005DFA58 = {
 			isa = PBXGroup;
 			children = (
-				735AAF2E1C81B524005DFA58 /* HealthKit.framework */,
+				4F5E37171C86C0A6000A5672 /* HealthKit.framework */,
 				735AAEEC1C819306005DFA58 /* healthKit */,
 				735AAF061C819306005DFA58 /* healthKitTests */,
 				735AAF111C819306005DFA58 /* healthKitUITests */,
