@@ -25,6 +25,8 @@
 @implementation LXCProfileCt
 -(void)viewDidAppear:(BOOL)animated
 {
+    NSLog(@"%@",[NSHomeDirectory() stringByAppendingString:@""]);
+    
     self.healthStore = [[HKHealthStore alloc]init];
     if ([HKHealthStore isHealthDataAvailable]) {
         NSSet* writeDataTypes = [NSSet setWithObjects:
@@ -61,6 +63,7 @@
     }
     
 }
+#pragma mmark - 更新Lb
 - (void)updateUsersWeightLb
 {
     NSMassFormatter *massFormatter = [[NSMassFormatter alloc] init];
@@ -94,8 +97,6 @@
             });
         }
     }];
-
-    
 }
 
 - (void)updateUsersHeightLb

@@ -11,9 +11,11 @@
 @implementation HKHealthStore (LXCExtension)
 -(void)aapl_mostRecentQuantitySampleOfType:(HKQuantityType *)quantityType predicate:(NSPredicate *)predicate completion:(void (^)(HKQuantity *, NSError *))completion
 {
-    NSSortDescriptor* timeSortDescriptor = [[NSSortDescriptor alloc]initWithKey:HKSampleSortIdentifierEndDate ascending:NO];
+//    NSSortDescriptor* timeSortDescriptor = [[NSSortDescriptor alloc]initWithKey:HKSampleSortIdentifierEndDate ascending:NO];
     
-    HKSampleQuery* query = [[HKSampleQuery alloc]initWithSampleType:quantityType predicate:predicate limit:1 sortDescriptors:@[timeSortDescriptor] resultsHandler:^(HKSampleQuery * _Nonnull query, NSArray<__kindof HKSample *> * _Nullable results, NSError * _Nullable error) {
+    NSSortDescriptor *start = [NSSortDescriptor sortDescriptorWithKey:HKSampleSortIdentifierStartDate ascending:NO];
+    NSSortDescriptor *end = [NSSortDescriptor sortDescriptorWithKey:HKSampleSortIdentifierEndDate ascending:NO];
+    HKSampleQuery* query = [[HKSampleQuery alloc]initWithSampleType:quantityType predicate:predicate limit:1 sortDescriptors:@[start,end] resultsHandler:^(HKSampleQuery * _Nonnull query, NSArray<__kindof HKSample *> * _Nullable results, NSError * _Nullable error) {
         if (!results) {
             if (completion) {
                 completion(nil,error);

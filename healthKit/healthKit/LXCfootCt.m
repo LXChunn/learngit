@@ -10,6 +10,7 @@
 #import "HKHealthStore+LXCExtension.h"
 @interface LXCfootCt ()
 @property (weak, nonatomic) IBOutlet UILabel *footValueLb;
+@property (weak, nonatomic) IBOutlet UILabel *kmValue;
 
 @property (nonatomic,strong)HKHealthStore* healthStore;
 
@@ -26,6 +27,7 @@
 //                                 nil];
         NSSet* readDataTypes = [NSSet setWithObjects:
                                 [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount],
+                                [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierDistanceWalkingRunning],
                                 nil];
         //由于HealthKit存储了大量的用户敏感信息，App如果需要访问HealthKit中的数据，首先需要请求用户权限。权限分为读取与读写权限（苹果将读写权限称为share）。请求权限还是比较简单的，可以直接使用requestAuthorizationToShareTypes: readTypes: completion: 方法
         NSLog(@"=%@",readDataTypes);
@@ -66,7 +68,7 @@
     self.healthStore = [[HKHealthStore alloc]init];
     self.footArr = [NSMutableArray array];
     
-        // Uncomment the following line to preserve selection between presentations.
+    // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -81,21 +83,23 @@
 - (void)updateUserFootLb
 {
     HKQuantityType* footType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
-    NSCalendar* calendar = [NSCalendar currentCalendar];
+    HKQuantityType* kmType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDistanceWalkingRunning];
+//    NSCalendar* calendar = [NSCalendar currentCalendar];
+//    NSDate* now = [NSDate date];
+//    NSDateComponents* components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
+//    [components setHour:0];
+//    [components setMinute:0];
+//    [components setSecond:0];
+//    
+//    NSDate* startDate = [calendar dateFromComponents:components];
+//    NSDate* endDate = [calendar dateByAddingUnit:NSCalendarUnitDay value:1 toDate:startDate options:0];
+//    
+//    NSPredicate* predicate = [HKQuery predicateForSamplesWithStartDate:startDate endDate:endDate options:HKQueryOptionNone];
     
-    NSDate* now = [NSDate date];
-    NSDateComponents* components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
-    [components setHour:0];
-    [components setMinute:0];
-    [components setSecond:0];
+//    NSSortDescriptor *start = [NSSortDescriptor sortDescriptorWithKey:HKSampleSortIdentifierStartDate ascending:NO];
+//    NSSortDescriptor *end = [NSSortDescriptor sortDescriptorWithKey:HKSampleSortIdentifierEndDate ascending:NO];
     
-    NSDate* startDate = [calendar dateFromComponents:components];
-    NSDate* endDate = [calendar dateByAddingUnit:NSCalendarUnitDay value:1 toDate:startDate options:0];
-    
-    NSPredicate* predicate = [HKQuery predicateForSamplesWithStartDate:startDate endDate:endDate options:HKQueryOptionNone];
-    
-    
-    [self.healthStore aapl_mostRecentQuantitySampleOfType:footType predicate:predicate completion:^(HKQuantity *mostRecentQuantity, NSError *error) {
+    [self.healthStore aapl_mostRecentQuantitySampleOfType:footType predicate:nil completion:^(HKQuantity *mostRecentQuantity, NSError *error) {
         if (!mostRecentQuantity) {
             NSLog(@"获取步数失败，%@",error);
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -105,8 +109,25 @@
         }else{
             NSLog(@"获取步数成功");
             NSLog(@"%@",[mostRecentQuantity valueForKey:@"_value"]);
+            
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.footValueLb.text = [NSString stringWithFormat:@"%@",[mostRecentQuantity valueForKey:@"_value"]];
+                self.footValueLb.text = [NSString stringWithFormat:@"%@(步)",[mostRecentQuantity valueForKey:@"_value"]];
+            });
+        }
+    }];
+    
+    [self.healthStore aapl_mostRecentQuantitySampleOfType:kmType predicate:nil completion:^(HKQuantity *mostRecentQuantity, NSError *error) {
+        if (!mostRecentQuantity) {
+            NSLog(@"获取距离失败，%@",error);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.footValueLb.text = @"0";
+            });
+            
+        }else{
+            NSLog(@"获取距离成功");
+            NSLog(@"%f",[mostRecentQuantity doubleValueForUnit:[HKUnit meterUnit]]);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.kmValue.text = [NSString stringWithFormat:@"%.3f(m)",[mostRecentQuantity doubleValueForUnit:[HKUnit meterUnit]]];
             });
         }
     }];
