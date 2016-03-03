@@ -14,6 +14,7 @@
 @interface ViewController ()<UITextFieldDelegate>
 {
     int count;
+    
 }
 @property (nonatomic,strong)RACCommand* command;
 @property (weak, nonatomic) IBOutlet UIImageView *imageVw;
@@ -26,6 +27,7 @@
 @property (nonatomic,copy)NSString* xiao;
 @property (nonatomic,copy)NSString* chun;
 @property (nonatomic,copy)NSString* LXC;
+@property (nonatomic,copy)NSString* str;
 
 @property (nonatomic,strong)RACDisposable* loadingDispose;
 @property (nonatomic,strong)RACSignal* signal;
@@ -65,6 +67,7 @@
 //    
 //    return self;
 //}
+
 -(RACSignal *)signal
 {
     if (!_signal) {
@@ -92,6 +95,10 @@
             self.textPassword.backgroundColor = [UIColor whiteColor];
             
             return [self creatSignal];
+        }];
+        
+        [[_command.executionSignals concat]subscribeNext:^(id x) {
+            NSLog(@"?????????");
         }];
     }
     return _command;
@@ -124,6 +131,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self map];//按钮点击网络请求，错误处理。。。
+    NSArray* array = @[@(1),@(2),@(3),@(4)];
+    NSLog(@"%@",[[[array rac_sequence]map:^id(id value){
+        return [value stringValue];
+    }]foldLeftWithStart:@"LXC"reduce:^id(id accumulator,id value){
+        return [accumulator stringByAppendingString:value];
+    }]);
     
 //    RAC(self.textPassword,text) = self.textUser.rac_textSignal;//相当于赋值
     /**
@@ -144,10 +157,10 @@
     }];
     
     //这一次值与上次值进行比较
-    RAC(self.textPassword,text) = [RACObserve(self, chun) distinctUntilChanged];
-    self.chun = @"l";
-    self.chun = @"l";
-    self.chun = @"w";
+//    RAC(self.textPassword,text) = [RACObserve(self, str) distinctUntilChanged];
+//    self.str = @"chun";
+//    self.str = @"ch";
+//    self.str = @"chun";
     
     [[[RACSignal createSignal:^RACDisposable *(id subscriber) {
         [subscriber sendNext:@"1"];
@@ -178,29 +191,29 @@
 //    __weak ViewController* bself = self;//防止弱引用
     
     //用户名输入的响应
-//    @weakify(self);
-//    [[self.textUser.rac_textSignal map:^id(NSString* value) {
-//        NSLog(@"用户名＝%@",value);
-//        self.liu = value;
-//        return value.length?[UIColor redColor]:[UIColor whiteColor];
-//    }] subscribeNext:^(id x) {
-//        @strongify(self)
-//        
-//        UIColor* color = x;
-//        self.textUser.backgroundColor = color;
-//    }];
-//    
-//    //用户密码输入的响应
-//    [[self.textPassword.rac_textSignal map:^id(NSString* value) {
-//        NSLog(@"用户密码＝%@",value);
-//        self.xiao = value;
-//        return value.length?[UIColor redColor]:[UIColor whiteColor];
-//    }] subscribeNext:^(id x) {
-//        @strongify(self)
-//        
-//        UIColor* color = x;
-//        self.textPassword.backgroundColor = color;
-//    }];
+    @weakify(self);
+    [[self.textUser.rac_textSignal map:^id(NSString* value) {
+        NSLog(@"用户名＝%@",value);
+        self.liu = value;
+        return value.length?[UIColor redColor]:[UIColor whiteColor];
+    }] subscribeNext:^(id x) {
+        @strongify(self)
+        
+        UIColor* color = x;
+        self.textUser.backgroundColor = color;
+    }];
+    
+    //用户密码输入的响应
+    [[self.textPassword.rac_textSignal map:^id(NSString* value) {
+        NSLog(@"用户密码＝%@",value);
+        self.xiao = value;
+        return value.length?[UIColor redColor]:[UIColor whiteColor];
+    }] subscribeNext:^(id x) {
+        @strongify(self)
+        
+        UIColor* color = x;
+        self.textPassword.backgroundColor = color;
+    }];
     
     //登陆按钮
 //    RACSignal* validUsernameSignal = [self.textUser.rac_textSignal map:^id(NSString* value) {
@@ -270,8 +283,11 @@
     self.loadBtn.rac_command = self.command;//保证执行过程中，不会执行其他操作
     
     [[[self fetchImageURL]map:^id(NSData* value) {
-        self.imageVw.image = [UIImage imageWithData:value];
-        NSLog(@"data = %@",value);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.imageVw.image = [UIImage imageWithData:value];
+            NSLog(@"data = %@",value);
+        });
+        
         return value;
     }]subscribeNext:^(NSData* x) {
         
@@ -342,7 +358,7 @@
         return NSLocalizedString(@"error", nil);
     }];
     
-    RAC(self,LXC) = [RACSignal merge:@[startSkip,completedSkip,failedSkip]];
+    RAC(self.showObsever,text) = [RACSignal merge:@[startSkip,completedSkip,failedSkip]];
 }
 #pragma mark - 网络请求
 - (RACSignal*)fetchImageURL
@@ -350,7 +366,7 @@
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         
-        NSString* imageUrl = @"http://b.hiphotos.baidu.com/image/pic/item/0823dd54564e925838c205c89982d158ccbf4e26.jpg";
+        NSString* imageUrl = @"http://pica.nipic.com/2008-01-09/200819134250665_2.jpg";
         
         NSURL* url = [NSURL URLWithString:imageUrl];
         NSURLRequest* request = [NSURLRequest requestWithURL:url];

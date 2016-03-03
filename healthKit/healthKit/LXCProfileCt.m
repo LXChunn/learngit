@@ -31,10 +31,12 @@ typedef void (^LXC)(NSString* str);
     void (^LXC)(int) = ^(int num){
         NSLog(@"222");
     };
-    NSOperationQueue* operation = [NSOperationQueue mainQueue];
+    NSOperationQueue* operation = [[NSOperationQueue alloc]init];
     [operation addOperationWithBlock:^{
         LXC(3);
+        NSLog(@"%@",[NSThread currentThread]);
     }];
+    
     NSLog(@"333");
     
 //    NSLog(@"%@",[NSHomeDirectory() stringByAppendingString:@""]);
