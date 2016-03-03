@@ -30,7 +30,13 @@
     [[NSNotificationCenter defaultCenter]postNotificationName:@"postData" object:arr];
 
 }
-
+-(id)init
+{
+    if (self = [super init]) {
+        
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     

@@ -18,6 +18,7 @@
 @property (nonatomic) double restingEnergyBurned;
 @property (nonatomic) double energyConsumed;
 @property (nonatomic) double netEnergy;
+
 @property (weak, nonatomic) IBOutlet UILabel *restingValueLb;
 @property (weak, nonatomic) IBOutlet UILabel *activeValueLb;
 @property (weak, nonatomic) IBOutlet UILabel *consumedValueLb;
@@ -37,60 +38,52 @@
     //刷新
     [self refreshTableview];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableview) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
-- (void)dealloc {
+- (void)viewDidAppear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.healthStore = [[HKHealthStore alloc]init];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 #pragma mark - 读取数据
 - (void)refreshTableview
 {
-    [self.refreshControl beginRefreshing];
     
     HKQuantityType* energyConsumedType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryEnergyConsumed];
     HKQuantityType* activeEnergyType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierActiveEnergyBurned];
+    //查询总焦耳
     [self fetchSumOfSamplesTodayForType:energyConsumedType unit:[HKUnit jouleUnit] completion:^(double totalJoulesConsumed, NSError *error) {
         
-        // Next, fetch the sum of active energy burned from HealthKit. Populate this by creating your
-        // own calorie tracking app or the Health app.
+        //查询运动消耗量
         [self fetchSumOfSamplesTodayForType:activeEnergyType unit:[HKUnit jouleUnit] completion:^(double activeEnergyBurned, NSError *error) {
             
-            // Last, calculate the user's basal energy burn so far today.
+            //
             [self fetchTotalBasalBurn:^(HKQuantity *basalEnergyBurn, NSError *error) {
                 
                 if (!basalEnergyBurn) {
                     NSLog(@"An error occurred trying to compute the basal energy burn. In your app, handle this gracefully. Error: %@", error);
                 }
                 
-                // Update the UI with all of the fetched values.
+                // 主线程更新UI.
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    //运动耗能
                     self.activeEnergyBurned = activeEnergyBurned;
-                    
+                    //人体消耗
                     self.restingEnergyBurned = [basalEnergyBurn doubleValueForUnit:[HKUnit jouleUnit]];
-                    
+                    //总消耗
                     self.energyConsumed = totalJoulesConsumed;
-                    
+                    //剩余能量
                     self.netEnergy = self.energyConsumed - self.activeEnergyBurned - self.restingEnergyBurned;
-                    
-                    [self.refreshControl endRefreshing];
                 });
             }];
         }];
     }];
-
 }
+
 - (void)fetchTotalBasalBurn:(void(^)(HKQuantity *basalEnergyBurn, NSError *error))completion {
     NSPredicate *todayPredicate = [self predicteForSamplesToday];
     
@@ -107,14 +100,6 @@
         [self.healthStore aapl_mostRecentQuantitySampleOfType:heightType predicate:todayPredicate completion:^(HKQuantity *height, NSError *error) {
             if (!height) {
                 completion(nil, error);
-                
-                return;
-            }
-            
-            NSDate *dateOfBirth = [self.healthStore dateOfBirthWithError:&error];
-            if (!dateOfBirth) {
-                completion(nil, error);
-                
                 return;
             }
             
@@ -125,57 +110,48 @@
                 return;
             }
             
-            // Once we have pulled all of the information without errors, calculate the user's total basal energy burn
-            HKQuantity *basalEnergyBurn = [self calculateBasalBurnTodayFromWeight:weight height:height dateOfBirth:dateOfBirth biologicalSex:biologicalSexObject];
+            HKQuantity *basalEnergyBurn = [self calculateBasalBurnTodayFromWeight:weight height:height biologicalSex:biologicalSexObject];
             
             completion(basalEnergyBurn, nil);
         }];
     }];
 }
-- (HKQuantity *)calculateBasalBurnTodayFromWeight:(HKQuantity *)weight height:(HKQuantity *)height dateOfBirth:(NSDate *)dateOfBirth biologicalSex:(HKBiologicalSexObject *)biologicalSex {
-    // Only calculate Basal Metabolic Rate (BMR) if we have enough information about the user
-    if (!weight || !height || !dateOfBirth || !biologicalSex) {
+
+- (HKQuantity *)calculateBasalBurnTodayFromWeight:(HKQuantity *)weight height:(HKQuantity *)height biologicalSex:(HKBiologicalSexObject *)biologicalSex {
+    if (!weight || !height || !biologicalSex) {
         return nil;
     }
     
-    // Note the difference between calling +unitFromString: vs creating a unit from a string with
-    // a given prefix. Both of these are equally valid, however one may be more convenient for a given
-    // use case.
     double heightInCentimeters = [height doubleValueForUnit:[HKUnit unitFromString:@"cm"]];
     double weightInKilograms = [weight doubleValueForUnit:[HKUnit gramUnitWithMetricPrefix:HKMetricPrefixKilo]];
+    //一天的能量消耗
+    double BMR = [self calculateBMRFromWeight:weightInKilograms height:heightInCentimeters biologicalSex:[biologicalSex biologicalSex]];
     
-    NSDate *now = [NSDate date];
-    NSDateComponents *ageComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:dateOfBirth toDate:now options:NSCalendarWrapComponents];
-    NSUInteger ageInYears = ageComponents.year;
-    
-    // BMR is calculated in kilocalories per day.
-    double BMR = [self calculateBMRFromWeight:weightInKilograms height:heightInCentimeters age:ageInYears biologicalSex:[biologicalSex biologicalSex]];
-    
-    // Figure out how much of today has completed so we know how many kilocalories the user has burned.
+    NSDate* now = [NSDate new];
     NSDate *startOfToday = [[NSCalendar currentCalendar] startOfDayForDate:now];
     NSDate *endOfToday = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:1 toDate:startOfToday options:0];
-    
     NSTimeInterval secondsInDay = [endOfToday timeIntervalSinceDate:startOfToday];
+    //百分比计算
     double percentOfDayComplete = [now timeIntervalSinceDate:startOfToday] / secondsInDay;
-    
     double kilocaloriesBurned = BMR * percentOfDayComplete;
     
-    return [HKQuantity quantityWithUnit:[HKUnit kilocalorieUnit] doubleValue:kilocaloriesBurned];
+    
+    return [HKQuantity quantityWithUnit:[HKUnit jouleUnit] doubleValue:kilocaloriesBurned];
 }
-- (double)calculateBMRFromWeight:(double)weightInKilograms height:(double)heightInCentimeters age:(NSUInteger)ageInYears biologicalSex:(HKBiologicalSex)biologicalSex {
+//根据身高 体重 性别 估算一天能量消耗
+- (double)calculateBMRFromWeight:(double)weightInKilograms height:(double)heightInCentimeters biologicalSex:(HKBiologicalSex)biologicalSex {
     double BMR;
     
-    // The BMR equation is different between males and females.
     if (biologicalSex == HKBiologicalSexMale) {
-        BMR = 66.0 + (13.8 * weightInKilograms) + (5 * heightInCentimeters) - (6.8 * ageInYears);
+        BMR = 100.0 + (2 * weightInKilograms) + (2 * heightInCentimeters);
     }
     else {
-        BMR = 655 + (9.6 * weightInKilograms) + (1.8 * heightInCentimeters) - (4.7 * ageInYears);
+        BMR = 200 + (2 * weightInKilograms) + (2 * heightInCentimeters);
     }
     
     return BMR;
 }
-
+#pragma mark - tongji
 - (void)fetchSumOfSamplesTodayForType:(HKQuantityType *)quantityType unit:(HKUnit *)unit completion:(void (^)(double, NSError *))completionHandler {
     NSPredicate *predicate = [self predicteForSamplesToday];
     
@@ -194,6 +170,7 @@
     
     [self.healthStore executeQuery:query];
 }
+
 - (NSPredicate*)predicteForSamplesToday
 {
     NSCalendar* calendar = [NSCalendar currentCalendar];
@@ -202,9 +179,8 @@
     
     NSDate* startDate = [calendar startOfDayForDate:now];
     NSDate* endDate = [calendar dateByAddingUnit:NSCalendarUnitDay value:1 toDate:startDate options:0];
-    
+     
     return [HKQuery predicateForSamplesWithStartDate:startDate endDate:endDate options:HKQueryOptionStrictStartDate];
-    
 }
 #pragma mark - 模拟correlation 存储
 - (void)saveFoodItem
@@ -219,11 +195,9 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if (success) {
                 NSLog(@"保存成功");
-                
             }else{
                 NSLog(@"An error occured saving the food. In your app, try to handle this gracefully.");
             }
-            
         });
     }];
 }
@@ -233,7 +207,6 @@
     NSDate *now = [NSDate date];
     
     HKQuantity *energyQuantityConsumed = [HKQuantity quantityWithUnit:[HKUnit jouleUnit] doubleValue:foodJoules];
-    
     HKQuantityType *energyConsumedType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryEnergyConsumed];
     
     HKQuantitySample *energyConsumedSample = [HKQuantitySample quantitySampleWithType:energyConsumedType quantity:energyQuantityConsumed startDate:now endDate:now];
@@ -249,8 +222,7 @@
 }
 
 #pragma mark - 显示
-#pragma mark - NSEnergyFormatter
-
+//格式化器
 - (NSEnergyFormatter *)energyFormatter {
     static NSEnergyFormatter *energyFormatter;
     static dispatch_once_t onceToken;
@@ -264,8 +236,6 @@
     
     return energyFormatter;
 }
-
-#pragma mark - Setter Overrides
 
 - (void)setActiveEnergyBurned:(double)activeEnergyBurned {
     _activeEnergyBurned = activeEnergyBurned;
@@ -294,9 +264,6 @@
     NSEnergyFormatter *energyFormatter = [self energyFormatter];
     self.netValueLb.text = [energyFormatter stringFromJoules:netEnergy];
 }
-
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
