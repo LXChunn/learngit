@@ -27,17 +27,18 @@ typedef void (^LXC)(NSString* str);
 @implementation LXCProfileCt
 -(void)viewDidAppear:(BOOL)animated
 {
-    NSLog(@"111");
-    void (^LXC)(int) = ^(int num){
-        NSLog(@"222");
-    };
-    NSOperationQueue* operation = [[NSOperationQueue alloc]init];
-    [operation addOperationWithBlock:^{
-        LXC(3);
-        NSLog(@"%@",[NSThread currentThread]);
-    }];
-    
-    NSLog(@"333");
+
+//    NSLog(@"111");
+//    void (^LXC)(int) = ^(int num){
+//        NSLog(@"222");
+//    };
+//    NSOperationQueue* operation = [[NSOperationQueue alloc]init];
+//    [operation addOperationWithBlock:^{
+//        LXC(3);
+//        NSLog(@"%@",[NSThread currentThread]);
+//    }];
+//    
+//    NSLog(@"333");
     
 //    NSLog(@"%@",[NSHomeDirectory() stringByAppendingString:@""]);
     
@@ -45,13 +46,11 @@ typedef void (^LXC)(NSString* str);
     if ([HKHealthStore isHealthDataAvailable]) {
         NSSet* writeDataTypes = [NSSet setWithObjects:
                                  [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryEnergyConsumed],
-                                 [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierActiveEnergyBurned],
                                  [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeight],
                                  [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyMass],
                                  nil];
         NSSet* readDataTypes = [NSSet setWithObjects:
                                 [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryEnergyConsumed],
-                                [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierActiveEnergyBurned],
                                 [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeight],
                                 [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyMass],
                                 [HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierDateOfBirth],
@@ -77,11 +76,11 @@ typedef void (^LXC)(NSString* str);
 #pragma mmark - 更新Lb
 - (void)updateUsersWeightLb
 {
+    //格式化器
     NSMassFormatter *massFormatter = [[NSMassFormatter alloc] init];
     massFormatter.unitStyle = NSFormattingUnitStyleLong;
     NSMassFormatterUnit weightFormatterUnit = NSMassFormatterUnitPound;
     NSString *weightUnitString = [massFormatter unitStringFromValue:10 unit:weightFormatterUnit];
-    
     NSString *localizedWeightUnitDescriptionFormat = @"体重(%@)";
     self.weightLb.text = [NSString stringWithFormat:localizedWeightUnitDescriptionFormat, weightUnitString];
 
@@ -97,7 +96,6 @@ typedef void (^LXC)(NSString* str);
         }
         
         else {
-
             
             HKUnit *weightUnit = [HKUnit poundUnit];
             double usersWeight = [mostRecentQuantity doubleValueForUnit:weightUnit];
@@ -114,7 +112,6 @@ typedef void (^LXC)(NSString* str);
 {
     NSLengthFormatter *lengthFormatter = [[NSLengthFormatter alloc] init];
     lengthFormatter.unitStyle = NSFormattingUnitStyleLong;
-    
     NSLengthFormatterUnit heightFormatterUnit = NSLengthFormatterUnitInch;
     NSString *heightUnitString = [lengthFormatter unitStringFromValue:10 unit:heightFormatterUnit];
     NSString *localizedHeightUnitDescriptionFormat = @"高度(%@)";
@@ -201,7 +198,6 @@ typedef void (^LXC)(NSString* str);
         
         [self updateUsersWeightLb];
     }];
-
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
@@ -253,6 +249,18 @@ typedef void (^LXC)(NSString* str);
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+//    NSLog(@"111");
+//    void (^LXC)(int) = ^(int num){
+//        NSLog(@"222");
+//    };
+//    NSOperationQueue* operation = [[NSOperationQueue alloc]init];
+//    [operation addOperationWithBlock:^{
+//        LXC(3);
+//        
+//        NSLog(@"%@",[NSThread currentThread]);
+//    }];
+//    NSLog(@"333");
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

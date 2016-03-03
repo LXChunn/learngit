@@ -13,8 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *kmValue;
 
 @property (nonatomic,strong)HKHealthStore* healthStore;
-
-
 @property (nonatomic,strong)NSMutableArray* footArr;
 @end
 
@@ -38,13 +36,14 @@
                 return;
             }
             //主线程更新界面
-            dispatch_async(dispatch_get_main_queue(), ^{
+//            dispatch_async(dispatch_get_main_queue(), ^{
                 [self updateRealTimeStepCount];
-            });
+//            });
         }];
     }
-
 }
+
+#pragma mark - 观察查询
 - (void)updateRealTimeStepCount
 {
     HKSampleType* sampleType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
@@ -61,45 +60,27 @@
     [self.healthStore executeQuery:query];
     
 }
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.healthStore = [[HKHealthStore alloc]init];
-    self.footArr = [NSMutableArray array];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-//更新步数
+#pragma mark - 获取当前步数
 - (void)updateUserFootLb
 {
     HKQuantityType* footType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
     HKQuantityType* kmType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDistanceWalkingRunning];
-//    NSCalendar* calendar = [NSCalendar currentCalendar];
-//    NSDate* now = [NSDate date];
-//    NSDateComponents* components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
-//    [components setHour:0];
-//    [components setMinute:0];
-//    [components setSecond:0];
-//    
-//    NSDate* startDate = [calendar dateFromComponents:components];
-//    NSDate* endDate = [calendar dateByAddingUnit:NSCalendarUnitDay value:1 toDate:startDate options:0];
-//    
-//    NSPredicate* predicate = [HKQuery predicateForSamplesWithStartDate:startDate endDate:endDate options:HKQueryOptionNone];
+    //    NSCalendar* calendar = [NSCalendar currentCalendar];
+    //    NSDate* now = [NSDate date];
+    //    NSDateComponents* components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
+    //    [components setHour:0];
+    //    [components setMinute:0];
+    //    [components setSecond:0];
+    //
+    //    NSDate* startDate = [calendar dateFromComponents:components];
+    //    NSDate* endDate = [calendar dateByAddingUnit:NSCalendarUnitDay value:1 toDate:startDate options:0];
+    //
+    //    NSPredicate* predicate = [HKQuery predicateForSamplesWithStartDate:startDate endDate:endDate options:HKQueryOptionNone];
     
-//    NSSortDescriptor *start = [NSSortDescriptor sortDescriptorWithKey:HKSampleSortIdentifierStartDate ascending:NO];
-//    NSSortDescriptor *end = [NSSortDescriptor sortDescriptorWithKey:HKSampleSortIdentifierEndDate ascending:NO];
+    //    NSSortDescriptor *start = [NSSortDescriptor sortDescriptorWithKey:HKSampleSortIdentifierStartDate ascending:NO];
+    //    NSSortDescriptor *end = [NSSortDescriptor sortDescriptorWithKey:HKSampleSortIdentifierEndDate ascending:NO];
     
-    [self.healthStore aapl_mostRecentQuantitySampleOfType:footType predicate:nil completion:^(HKQuantity *mostRecentQuantity, NSError *error) {
+    [self lxc_mostRecentQuantitySampleOfType:footType completion:^(HKQuantity *mostRecentQuantity, NSError *error) {
         if (!mostRecentQuantity) {
             NSLog(@"获取步数失败，%@",error);
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -116,13 +97,12 @@
         }
     }];
     
-    [self.healthStore aapl_mostRecentQuantitySampleOfType:kmType predicate:nil completion:^(HKQuantity *mostRecentQuantity, NSError *error) {
+    [self lxc_mostRecentQuantitySampleOfType:kmType completion:^(HKQuantity *mostRecentQuantity,NSError* error) {
         if (!mostRecentQuantity) {
             NSLog(@"获取距离失败，%@",error);
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.footValueLb.text = @"0";
             });
-            
         }else{
             NSLog(@"获取距离成功");
             NSLog(@"%f",[mostRecentQuantity doubleValueForUnit:[HKUnit meterUnit]]);
@@ -131,6 +111,57 @@
             });
         }
     }];
+    [self sourceQuery];//数据来源
+}
+- (void)lxc_mostRecentQuantitySampleOfType:(HKQuantityType*)quantityType completion:(void (^)(HKQuantity*,NSError*))LXC
+{
+    [self.healthStore aapl_mostRecentQuantitySampleOfType:quantityType predicate:nil completion:^(HKQuantity *mostRecentQuantity, NSError *error) {
+        if (!mostRecentQuantity) {
+            
+            LXC(nil,error);
+            
+        }else{
+            
+            LXC(mostRecentQuantity,error);
+        }
+    }];
+}
+
+//来源查询
+- (void)sourceQuery
+{
+    HKSampleType* sampleType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
+    HKSourceQuery* query = [[HKSourceQuery alloc]initWithSampleType:sampleType samplePredicate:nil completionHandler:^(HKSourceQuery * _Nonnull query, NSSet<HKSource *> * _Nullable sources, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"an error occured while gathering the sources for step date %@",error.localizedDescription);
+        }
+        for (HKSource* source in sources) {
+            NSLog(@"来源＝%@",source);
+        }
+    }];
+    
+    [self.healthStore executeQuery:query];
+    
+}
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.healthStore = [[HKHealthStore alloc]init];
+    self.footArr = [NSMutableArray array];
+    
+    
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source

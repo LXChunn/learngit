@@ -28,6 +28,8 @@
 @property (nonatomic,copy)NSString* chun;
 @property (nonatomic,copy)NSString* LXC;
 @property (nonatomic,copy)NSString* str;
+@property (nonatomic,copy)NSString* lxcStr;
+>>>>>>> e7c44b6f6308e90df65658381d3bf9bd8834c0f5
 
 @property (nonatomic,strong)RACDisposable* loadingDispose;
 @property (nonatomic,strong)RACSignal* signal;
@@ -161,6 +163,21 @@
 //    self.str = @"chun";
 //    self.str = @"ch";
 //    self.str = @"chun";
+    RAC(self.textPassword,text) = [RACObserve(self, lxcStr) distinctUntilChanged];
+    self.lxcStr = @"w";
+    self.lxcStr = @"w";
+    self.lxcStr = @"w";
+    
+//    [[[RACSignal createSignal:^RACDisposable *(id subscriber) {
+//        [subscriber sendNext:@"1"];
+//        [subscriber sendNext:@"2"];
+//        [subscriber sendNext:@"3"];
+//        [subscriber sendCompleted];
+//        return nil;
+//    }] take:1] subscribeNext:^(id x) {
+//        NSLog(@"only 1 and 2 will be print: %@", x);
+//    }];
+>>>>>>> e7c44b6f6308e90df65658381d3bf9bd8834c0f5
     
     [[[RACSignal createSignal:^RACDisposable *(id subscriber) {
         [subscriber sendNext:@"1"];
@@ -168,9 +185,18 @@
         [subscriber sendNext:@"3"];
         [subscriber sendCompleted];
         return nil;
-    }] take:1] subscribeNext:^(id x) {
+    }] take:2] subscribeNext:^(id x) {
         NSLog(@"only 1 and 2 will be print: %@", x);
     }];
+    
+    NSArray* arr = @[@(1),@(2),@(3),@(4),@(5),@(6)];
+    NSArray* result = [[[[arr rac_sequence]filter:^BOOL(id value) {
+        return [value integerValue]%2 == 0;
+    }]map:^id(NSNumber* value) {
+        long s = [value intValue] * [value intValue];
+        return @(s);
+    }] array] ;
+    NSLog(@"%@",result);
     
     //显示处理结果
 //    RAC(self.showObsever,text) = RACObserve(self, LXC);
@@ -287,7 +313,6 @@
             self.imageVw.image = [UIImage imageWithData:value];
             NSLog(@"data = %@",value);
         });
-        
         return value;
     }]subscribeNext:^(NSData* x) {
         
