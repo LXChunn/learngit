@@ -9,6 +9,8 @@
 #import "LXCProfileCt.h"
 #import "HKHealthStore+LXCExtension.h"
 
+typedef void (^LXC)(NSString* str);
+
 @interface LXCProfileCt ()
 @property (weak, nonatomic) IBOutlet UILabel *ageLb;
 @property (weak, nonatomic) IBOutlet UILabel *ageValueLb;
@@ -25,6 +27,18 @@
 @implementation LXCProfileCt
 -(void)viewDidAppear:(BOOL)animated
 {
+    NSLog(@"111");
+    void (^LXC)(int) = ^(int num){
+        NSLog(@"222");
+    };
+    NSOperationQueue* operation = [NSOperationQueue mainQueue];
+    [operation addOperationWithBlock:^{
+        LXC(3);
+    }];
+    NSLog(@"333");
+    
+//    NSLog(@"%@",[NSHomeDirectory() stringByAppendingString:@""]);
+    
     self.healthStore = [[HKHealthStore alloc]init];
     if ([HKHealthStore isHealthDataAvailable]) {
         NSSet* writeDataTypes = [NSSet setWithObjects:
@@ -42,7 +56,7 @@
                                 [HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierBiologicalSex],
                                 nil];
         //由于HealthKit存储了大量的用户敏感信息，App如果需要访问HealthKit中的数据，首先需要请求用户权限。权限分为读取与读写权限（苹果将读写权限称为share）。请求权限还是比较简单的，可以直接使用requestAuthorizationToShareTypes: readTypes: completion: 方法
-        NSLog(@"%@=%@",writeDataTypes,readDataTypes);
+        NSLog(@"write=%@ read=%@",writeDataTypes,readDataTypes);
         
         [self.healthStore requestAuthorizationToShareTypes:writeDataTypes readTypes:readDataTypes completion:^(BOOL success, NSError * _Nullable error) {
             if (!success) {
@@ -58,7 +72,7 @@
         }];
     }
 }
-
+#pragma mmark - 更新Lb
 - (void)updateUsersWeightLb
 {
     NSMassFormatter *massFormatter = [[NSMassFormatter alloc] init];
@@ -68,7 +82,7 @@
     
     NSString *localizedWeightUnitDescriptionFormat = @"体重(%@)";
     self.weightLb.text = [NSString stringWithFormat:localizedWeightUnitDescriptionFormat, weightUnitString];
-    
+
     HKQuantityType *weightType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyMass];
     
     [self.healthStore aapl_mostRecentQuantitySampleOfType:weightType predicate:nil completion:^(HKQuantity *mostRecentQuantity, NSError *error) {
@@ -81,9 +95,12 @@
         }
         
         else {
+
+            
             HKUnit *weightUnit = [HKUnit poundUnit];
             double usersWeight = [mostRecentQuantity doubleValueForUnit:weightUnit];
             
+            // Update UI
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.weightValueLb.text = [NSNumberFormatter localizedStringFromNumber:@(usersWeight) numberStyle:NSNumberFormatterNoStyle];
             });
@@ -104,7 +121,6 @@
     
     HKQuantityType *heightType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeight];
     
-    // Query to get the user's latest height, if it exists.
     [self.healthStore aapl_mostRecentQuantitySampleOfType:heightType predicate:nil completion:^(HKQuantity *mostRecentQuantity, NSError *error) {
         if (!mostRecentQuantity) {
             NSLog(@"Either an error occured fetching the user's height information or none has been stored yet. In your app, try to handle this gracefully.");
@@ -114,11 +130,11 @@
             });
         }
         else {
-            // Determine the height in the required unit.
+            
             HKUnit *heightUnit = [HKUnit inchUnit];
             double usersHeight = [mostRecentQuantity doubleValueForUnit:heightUnit];
             
-            // Update the user interface.
+            // Update UI
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.heightValueLb.text = [NSNumberFormatter localizedStringFromNumber:@(usersHeight) numberStyle:NSNumberFormatterNoStyle];
             });
@@ -207,6 +223,7 @@
         };
     }
     
+    //弹窗
     UIAlertController* alertCt = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleAlert];
     
     [alertCt addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
