@@ -75,11 +75,11 @@ typedef void (^LXC)(NSString* str);
 #pragma mmark - 更新Lb
 - (void)updateUsersWeightLb
 {
+    //格式化器
     NSMassFormatter *massFormatter = [[NSMassFormatter alloc] init];
     massFormatter.unitStyle = NSFormattingUnitStyleLong;
     NSMassFormatterUnit weightFormatterUnit = NSMassFormatterUnitPound;
     NSString *weightUnitString = [massFormatter unitStringFromValue:10 unit:weightFormatterUnit];
-    
     NSString *localizedWeightUnitDescriptionFormat = @"体重(%@)";
     self.weightLb.text = [NSString stringWithFormat:localizedWeightUnitDescriptionFormat, weightUnitString];
 
@@ -95,7 +95,6 @@ typedef void (^LXC)(NSString* str);
         }
         
         else {
-
             
             HKUnit *weightUnit = [HKUnit poundUnit];
             double usersWeight = [mostRecentQuantity doubleValueForUnit:weightUnit];
@@ -112,7 +111,6 @@ typedef void (^LXC)(NSString* str);
 {
     NSLengthFormatter *lengthFormatter = [[NSLengthFormatter alloc] init];
     lengthFormatter.unitStyle = NSFormattingUnitStyleLong;
-    
     NSLengthFormatterUnit heightFormatterUnit = NSLengthFormatterUnitInch;
     NSString *heightUnitString = [lengthFormatter unitStringFromValue:10 unit:heightFormatterUnit];
     NSString *localizedHeightUnitDescriptionFormat = @"高度(%@)";

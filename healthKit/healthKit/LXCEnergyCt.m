@@ -18,6 +18,7 @@
 @property (nonatomic) double restingEnergyBurned;
 @property (nonatomic) double energyConsumed;
 @property (nonatomic) double netEnergy;
+
 @property (weak, nonatomic) IBOutlet UILabel *restingValueLb;
 @property (weak, nonatomic) IBOutlet UILabel *activeValueLb;
 @property (weak, nonatomic) IBOutlet UILabel *consumedValueLb;
@@ -51,7 +52,6 @@
 #pragma mark - 读取数据
 - (void)refreshTableview
 {
-    [self.refreshControl beginRefreshing];
     
     HKQuantityType* energyConsumedType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryEnergyConsumed];
     HKQuantityType* activeEnergyType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierActiveEnergyBurned];
@@ -72,7 +72,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     //运动耗能
                     self.activeEnergyBurned = activeEnergyBurned;
-                    //人体自然消耗
+                    //人体消耗
                     self.restingEnergyBurned = [basalEnergyBurn doubleValueForUnit:[HKUnit jouleUnit]];
                     //总消耗
                     self.energyConsumed = totalJoulesConsumed;
@@ -82,8 +82,8 @@
             }];
         }];
     }];
-
 }
+
 - (void)fetchTotalBasalBurn:(void(^)(HKQuantity *basalEnergyBurn, NSError *error))completion {
     NSPredicate *todayPredicate = [self predicteForSamplesToday];
     
@@ -207,7 +207,6 @@
     NSDate *now = [NSDate date];
     
     HKQuantity *energyQuantityConsumed = [HKQuantity quantityWithUnit:[HKUnit jouleUnit] doubleValue:foodJoules];
-    
     HKQuantityType *energyConsumedType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryEnergyConsumed];
     
     HKQuantitySample *energyConsumedSample = [HKQuantitySample quantitySampleWithType:energyConsumedType quantity:energyQuantityConsumed startDate:now endDate:now];
@@ -224,7 +223,7 @@
 
 #pragma mark - 显示
 #pragma mark - NSEnergyFormatter
-
+//格式化器
 - (NSEnergyFormatter *)energyFormatter {
     static NSEnergyFormatter *energyFormatter;
     static dispatch_once_t onceToken;
@@ -268,9 +267,6 @@
     NSEnergyFormatter *energyFormatter = [self energyFormatter];
     self.netValueLb.text = [energyFormatter stringFromJoules:netEnergy];
 }
-
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
