@@ -222,7 +222,6 @@
 }
 
 #pragma mark - 显示
-#pragma mark - NSEnergyFormatter
 //格式化器
 - (NSEnergyFormatter *)energyFormatter {
     static NSEnergyFormatter *energyFormatter;
@@ -237,8 +236,6 @@
     
     return energyFormatter;
 }
-
-#pragma mark - Setter Overrides
 
 - (void)setActiveEnergyBurned:(double)activeEnergyBurned {
     _activeEnergyBurned = activeEnergyBurned;

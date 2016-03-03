@@ -36,12 +36,11 @@
                 return;
             }
             //主线程更新界面
-            dispatch_async(dispatch_get_main_queue(), ^{
+//            dispatch_async(dispatch_get_main_queue(), ^{
                 [self updateRealTimeStepCount];
-            });
+//            });
         }];
     }
-
 }
 
 #pragma mark - 观察查询
@@ -81,7 +80,7 @@
     //    NSSortDescriptor *start = [NSSortDescriptor sortDescriptorWithKey:HKSampleSortIdentifierStartDate ascending:NO];
     //    NSSortDescriptor *end = [NSSortDescriptor sortDescriptorWithKey:HKSampleSortIdentifierEndDate ascending:NO];
     
-    [self.healthStore aapl_mostRecentQuantitySampleOfType:footType predicate:nil completion:^(HKQuantity *mostRecentQuantity, NSError *error) {
+    [self lxc_mostRecentQuantitySampleOfType:footType completion:^(HKQuantity *mostRecentQuantity, NSError *error) {
         if (!mostRecentQuantity) {
             NSLog(@"获取步数失败，%@",error);
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -98,13 +97,12 @@
         }
     }];
     
-    [self.healthStore aapl_mostRecentQuantitySampleOfType:kmType predicate:nil completion:^(HKQuantity *mostRecentQuantity, NSError *error) {
+    [self lxc_mostRecentQuantitySampleOfType:kmType completion:^(HKQuantity *mostRecentQuantity,NSError* error) {
         if (!mostRecentQuantity) {
             NSLog(@"获取距离失败，%@",error);
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.footValueLb.text = @"0";
             });
-            
         }else{
             NSLog(@"获取距离成功");
             NSLog(@"%f",[mostRecentQuantity doubleValueForUnit:[HKUnit meterUnit]]);
@@ -113,9 +111,22 @@
             });
         }
     }];
-    
     [self sourceQuery];//数据来源
 }
+- (void)lxc_mostRecentQuantitySampleOfType:(HKQuantityType*)quantityType completion:(void (^)(HKQuantity*,NSError*))LXC
+{
+    [self.healthStore aapl_mostRecentQuantitySampleOfType:quantityType predicate:nil completion:^(HKQuantity *mostRecentQuantity, NSError *error) {
+        if (!mostRecentQuantity) {
+            
+            LXC(nil,error);
+            
+        }else{
+            
+            LXC(mostRecentQuantity,error);
+        }
+    }];
+}
+
 //来源查询
 - (void)sourceQuery
 {
@@ -127,8 +138,6 @@
         for (HKSource* source in sources) {
             NSLog(@"来源＝%@",source);
         }
-        
-        
     }];
     
     [self.healthStore executeQuery:query];

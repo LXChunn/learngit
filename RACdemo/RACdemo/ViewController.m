@@ -26,6 +26,7 @@
 @property (nonatomic,copy)NSString* xiao;
 @property (nonatomic,copy)NSString* chun;
 @property (nonatomic,copy)NSString* LXC;
+@property (nonatomic,copy)NSString* lxcStr;
 
 @property (nonatomic,strong)RACDisposable* loadingDispose;
 @property (nonatomic,strong)RACSignal* signal;
@@ -144,10 +145,20 @@
     }];
     
     //这一次值与上次值进行比较
-    RAC(self.textPassword,text) = [RACObserve(self, chun) distinctUntilChanged];
-    self.chun = @"l";
-    self.chun = @"l";
-    self.chun = @"w";
+    RAC(self.textPassword,text) = [RACObserve(self, lxcStr) distinctUntilChanged];
+    self.lxcStr = @"w";
+    self.lxcStr = @"w";
+    self.lxcStr = @"w";
+    
+//    [[[RACSignal createSignal:^RACDisposable *(id subscriber) {
+//        [subscriber sendNext:@"1"];
+//        [subscriber sendNext:@"2"];
+//        [subscriber sendNext:@"3"];
+//        [subscriber sendCompleted];
+//        return nil;
+//    }] take:1] subscribeNext:^(id x) {
+//        NSLog(@"only 1 and 2 will be print: %@", x);
+//    }];
     
     [[[RACSignal createSignal:^RACDisposable *(id subscriber) {
         [subscriber sendNext:@"1"];
@@ -155,9 +166,18 @@
         [subscriber sendNext:@"3"];
         [subscriber sendCompleted];
         return nil;
-    }] take:1] subscribeNext:^(id x) {
+    }] take:2] subscribeNext:^(id x) {
         NSLog(@"only 1 and 2 will be print: %@", x);
     }];
+    
+    NSArray* arr = @[@(1),@(2),@(3),@(4),@(5),@(6)];
+    NSArray* result = [[[[arr rac_sequence]filter:^BOOL(id value) {
+        return [value integerValue]%2 == 0;
+    }]map:^id(NSNumber* value) {
+        long s = [value intValue] * [value intValue];
+        return @(s);
+    }] array] ;
+    NSLog(@"%@",result);
     
     //显示处理结果
 //    RAC(self.showObsever,text) = RACObserve(self, LXC);
@@ -270,8 +290,10 @@
     self.loadBtn.rac_command = self.command;//保证执行过程中，不会执行其他操作
     
     [[[self fetchImageURL]map:^id(NSData* value) {
-        self.imageVw.image = [UIImage imageWithData:value];
-        NSLog(@"data = %@",value);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.imageVw.image = [UIImage imageWithData:value];
+            NSLog(@"data = %@",value);
+        });
         return value;
     }]subscribeNext:^(NSData* x) {
         
