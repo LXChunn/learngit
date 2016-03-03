@@ -56,46 +56,39 @@
                 [self updateUsersWeightLb];
             });
         }];
-        
-        
     }
-    
 }
+
 - (void)updateUsersWeightLb
 {
     NSMassFormatter *massFormatter = [[NSMassFormatter alloc] init];
     massFormatter.unitStyle = NSFormattingUnitStyleLong;
-    
     NSMassFormatterUnit weightFormatterUnit = NSMassFormatterUnitPound;
     NSString *weightUnitString = [massFormatter unitStringFromValue:10 unit:weightFormatterUnit];
-    NSString *localizedWeightUnitDescriptionFormat = @"体重(%@)";
     
+    NSString *localizedWeightUnitDescriptionFormat = @"体重(%@)";
     self.weightLb.text = [NSString stringWithFormat:localizedWeightUnitDescriptionFormat, weightUnitString];
     
-    // Query to get the user's latest weight, if it exists.
     HKQuantityType *weightType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyMass];
     
     [self.healthStore aapl_mostRecentQuantitySampleOfType:weightType predicate:nil completion:^(HKQuantity *mostRecentQuantity, NSError *error) {
         if (!mostRecentQuantity) {
-            NSLog(@"Either an error occured fetching the user's weight information or none has been stored yet. In your app, try to handle this gracefully.");
+            NSLog(@"Either an error occured fetching the user's weight information or none has been stored yet.");
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.weightValueLb.text = @"默认";
             });
         }
+        
         else {
-            // Determine the weight in the required unit.
             HKUnit *weightUnit = [HKUnit poundUnit];
             double usersWeight = [mostRecentQuantity doubleValueForUnit:weightUnit];
             
-            // Update the user interface.
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.weightValueLb.text = [NSNumberFormatter localizedStringFromNumber:@(usersWeight) numberStyle:NSNumberFormatterNoStyle];
             });
         }
     }];
-
-    
 }
 
 - (void)updateUsersHeightLb

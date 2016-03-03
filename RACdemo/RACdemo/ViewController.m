@@ -125,13 +125,46 @@
     [super viewDidLoad];
     [self map];//按钮点击网络请求，错误处理。。。
     
+//    RAC(self.textPassword,text) = self.textUser.rac_textSignal;//相当于赋值
+    /**
+     ************filters************
+     **/
+    [[self.textUser.rac_textSignal filter:^BOOL(id value) {
+        return [value isEqual:@"1"];
+    }]subscribeNext:^(id x) {
+        NSLog(@"filter:%@",x);
+    }];
+    
+    [[self.textUser.rac_textSignal ignore:@"1"]subscribeNext:^(id x) {
+        NSLog(@"ignore:%@",x);
+    }];
+    
+    [[self.textUser.rac_textSignal ignoreValues]subscribeNext:^(id x) {
+        NSLog(@"ignoreALL:%@",x);
+    }];
+    
+    //这一次值与上次值进行比较
+    RAC(self.textPassword,text) = [RACObserve(self, chun) distinctUntilChanged];
+    self.chun = @"l";
+    self.chun = @"l";
+    self.chun = @"w";
+    
+    [[[RACSignal createSignal:^RACDisposable *(id subscriber) {
+        [subscriber sendNext:@"1"];
+        [subscriber sendNext:@"2"];
+        [subscriber sendNext:@"3"];
+        [subscriber sendCompleted];
+        return nil;
+    }] take:1] subscribeNext:^(id x) {
+        NSLog(@"only 1 and 2 will be print: %@", x);
+    }];
+    
     //显示处理结果
 //    RAC(self.showObsever,text) = RACObserve(self, LXC);
     //或者
     [RACObserve(self, LXC) subscribeNext:^(NSString* x) {
         self.showObsever.text = x;
     }];
-      
       
     self.textUser.delegate = self;
     self.textPassword.delegate = self;
@@ -145,29 +178,29 @@
 //    __weak ViewController* bself = self;//防止弱引用
     
     //用户名输入的响应
-    @weakify(self);
-    [[self.textUser.rac_textSignal map:^id(NSString* value) {
-        NSLog(@"用户名＝%@",value);
-        self.liu = value;
-        return value.length?[UIColor redColor]:[UIColor whiteColor];
-    }] subscribeNext:^(id x) {
-        @strongify(self)
-        
-        UIColor* color = x;
-        self.textUser.backgroundColor = color;
-    }];
-    
-    //用户密码输入的响应
-    [[self.textPassword.rac_textSignal map:^id(NSString* value) {
-        NSLog(@"用户密码＝%@",value);
-        self.xiao = value;
-        return value.length?[UIColor redColor]:[UIColor whiteColor];
-    }] subscribeNext:^(id x) {
-        @strongify(self)
-        
-        UIColor* color = x;
-        self.textPassword.backgroundColor = color;
-    }];
+//    @weakify(self);
+//    [[self.textUser.rac_textSignal map:^id(NSString* value) {
+//        NSLog(@"用户名＝%@",value);
+//        self.liu = value;
+//        return value.length?[UIColor redColor]:[UIColor whiteColor];
+//    }] subscribeNext:^(id x) {
+//        @strongify(self)
+//        
+//        UIColor* color = x;
+//        self.textUser.backgroundColor = color;
+//    }];
+//    
+//    //用户密码输入的响应
+//    [[self.textPassword.rac_textSignal map:^id(NSString* value) {
+//        NSLog(@"用户密码＝%@",value);
+//        self.xiao = value;
+//        return value.length?[UIColor redColor]:[UIColor whiteColor];
+//    }] subscribeNext:^(id x) {
+//        @strongify(self)
+//        
+//        UIColor* color = x;
+//        self.textPassword.backgroundColor = color;
+//    }];
     
     //登陆按钮
 //    RACSignal* validUsernameSignal = [self.textUser.rac_textSignal map:^id(NSString* value) {
