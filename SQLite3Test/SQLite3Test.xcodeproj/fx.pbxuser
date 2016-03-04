@@ -1,0 +1,271 @@
+// !$*UTF8*$!
+{
+	1D6058900D05DD3D006BFB54 /* SQLite3Test */ = {
+		activeExec = 0;
+		executables = (
+			E77F09BF148370F40068F5BC /* SQLite3Test */,
+		);
+	};
+	28D7ACF60DDB3853001CB0EB /* SQLite3TestViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1045, 556}}";
+			sepNavSelRange = "{620, 0}";
+			sepNavVisRange = "{0, 687}";
+			sepNavWindowFrame = "{{15, 69}, {1212, 704}}";
+		};
+	};
+	28D7ACF70DDB3853001CB0EB /* SQLite3TestViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1019, 3094}}";
+			sepNavSelRange = "{6015, 0}";
+			sepNavVisRange = "{0, 995}";
+		};
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = E77F09BF148370F40068F5BC /* SQLite3Test */;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* SQLite3Test */;
+		addToTargets = (
+			1D6058900D05DD3D006BFB54 /* SQLite3Test */,
+		);
+		breakpoints = (
+		);
+		codeSenseManager = E77F09CA148371070068F5BC /* Code sense */;
+		executables = (
+			E77F09BF148370F40068F5BC /* SQLite3Test */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					841,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 345086568;
+			PBXWorkspaceStateSaveDate = 345086568;
+		};
+		perUserProjectItems = {
+			E7477FE11491A21000A7AD0F /* PBXTextBookmark */ = E7477FE11491A21000A7AD0F /* PBXTextBookmark */;
+			E7477FF61491A2E000A7AD0F /* PBXTextBookmark */ = E7477FF61491A2E000A7AD0F /* PBXTextBookmark */;
+			E74780041491AE6B00A7AD0F /* PBXTextBookmark */ = E74780041491AE6B00A7AD0F /* PBXTextBookmark */;
+			E74780151491B11400A7AD0F /* PBXTextBookmark */ = E74780151491B11400A7AD0F /* PBXTextBookmark */;
+			E747801E1491B48500A7AD0F /* PBXTextBookmark */ = E747801E1491B48500A7AD0F /* PBXTextBookmark */;
+			E747801F1491B48500A7AD0F /* PBXTextBookmark */ = E747801F1491B48500A7AD0F /* PBXTextBookmark */;
+			E747802D1491B54900A7AD0F /* PBXTextBookmark */ = E747802D1491B54900A7AD0F /* PBXTextBookmark */;
+			E74780371491B7AA00A7AD0F /* PBXTextBookmark */ = E74780371491B7AA00A7AD0F /* PBXTextBookmark */;
+			E74780381491B7AA00A7AD0F /* PBXTextBookmark */ = E74780381491B7AA00A7AD0F /* PBXTextBookmark */;
+			E74780391491B7AA00A7AD0F /* PBXTextBookmark */ = E74780391491B7AA00A7AD0F /* PBXTextBookmark */;
+		};
+		sourceControlManager = E77F09C9148371070068F5BC /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	E725F66014871D1C00CEA328 /* operateSqlViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1019, 556}}";
+			sepNavSelRange = "{260, 11}";
+			sepNavVisRange = "{0, 583}";
+		};
+	};
+	E725F66114871D1C00CEA328 /* operateSqlViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1019, 2223}}";
+			sepNavSelRange = "{1407, 0}";
+			sepNavVisRange = "{900, 942}";
+		};
+	};
+	E7477FE11491A21000A7AD0F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = E7477FE21491A21000A7AD0F /* UITableView.h */;
+		name = "UITableView.h: 339";
+		rLen = 11;
+		rLoc = 17755;
+		rType = 0;
+		vrLen = 3071;
+		vrLoc = 16616;
+	};
+	E7477FE21491A21000A7AD0F /* UITableView.h */ = {
+		isa = PBXFileReference;
+		name = UITableView.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITableView.h;
+		sourceTree = "<absolute>";
+	};
+	E7477FF61491A2E000A7AD0F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = E7477FF71491A2E000A7AD0F /* NSIndexPath.h */;
+		name = "NSIndexPath.h: 9";
+		rLen = 58;
+		rLoc = 226;
+		rType = 0;
+		vrLen = 1096;
+		vrLoc = 0;
+	};
+	E7477FF71491A2E000A7AD0F /* NSIndexPath.h */ = {
+		isa = PBXFileReference;
+		name = NSIndexPath.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSIndexPath.h;
+		sourceTree = "<absolute>";
+	};
+	E74780041491AE6B00A7AD0F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF60DDB3853001CB0EB /* SQLite3TestViewController.h */;
+		name = "SQLite3TestViewController.h: 24";
+		rLen = 0;
+		rLoc = 620;
+		rType = 0;
+		vrLen = 687;
+		vrLoc = 0;
+	};
+	E74780151491B11400A7AD0F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = E77F09CD1483722C0068F5BC /* sqlService.h */;
+		name = "sqlService.h: 22";
+		rLen = 0;
+		rLoc = 492;
+		rType = 0;
+		vrLen = 866;
+		vrLoc = 0;
+	};
+	E747801E1491B48500A7AD0F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* SQLite3TestViewController.m */;
+		name = "SQLite3TestViewController.m: 225";
+		rLen = 0;
+		rLoc = 6015;
+		rType = 0;
+		vrLen = 995;
+		vrLoc = 0;
+	};
+	E747801F1491B48500A7AD0F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = E74780201491B48500A7AD0F /* UITextField.h */;
+		name = "UITextField.h: 41";
+		rLen = 94;
+		rLoc = 979;
+		rType = 0;
+		vrLen = 2920;
+		vrLoc = 3258;
+	};
+	E74780201491B48500A7AD0F /* UITextField.h */ = {
+		isa = PBXFileReference;
+		name = UITextField.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITextField.h;
+		sourceTree = "<absolute>";
+	};
+	E747802D1491B54900A7AD0F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = E725F66014871D1C00CEA328 /* operateSqlViewController.h */;
+		name = "operateSqlViewController.h: 14";
+		rLen = 11;
+		rLoc = 260;
+		rType = 0;
+		vrLen = 583;
+		vrLoc = 0;
+	};
+	E74780371491B7AA00A7AD0F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = E725F66114871D1C00CEA328 /* operateSqlViewController.m */;
+		name = "operateSqlViewController.m: 54";
+		rLen = 0;
+		rLoc = 1407;
+		rType = 0;
+		vrLen = 942;
+		vrLoc = 900;
+	};
+	E74780381491B7AA00A7AD0F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = E77F09CE1483722C0068F5BC /* sqlService.m */;
+		name = "sqlService.m: 203";
+		rLen = 0;
+		rLoc = 4961;
+		rType = 0;
+		vrLen = 994;
+		vrLoc = 2735;
+	};
+	E74780391491B7AA00A7AD0F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = E77F09CE1483722C0068F5BC /* sqlService.m */;
+		name = "sqlService.m: 12";
+		rLen = 0;
+		rLoc = 190;
+		rType = 0;
+		vrLen = 784;
+		vrLoc = 0;
+	};
+	E77F09BF148370F40068F5BC /* SQLite3Test */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = SQLite3Test;
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+		variableFormatDictionary = {
+		};
+	};
+	E77F09C9148371070068F5BC /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	E77F09CA148371070068F5BC /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	E77F09CD1483722C0068F5BC /* sqlService.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1019, 556}}";
+			sepNavSelRange = "{492, 0}";
+			sepNavVisRange = "{0, 866}";
+		};
+	};
+	E77F09CE1483722C0068F5BC /* sqlService.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1019, 4238}}";
+			sepNavSelRange = "{190, 0}";
+			sepNavVisRange = "{0, 784}";
+		};
+	};
+}
