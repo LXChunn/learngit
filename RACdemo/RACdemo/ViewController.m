@@ -18,6 +18,7 @@
 }
 @property (nonatomic,strong)RACCommand* command;
 @property (weak, nonatomic) IBOutlet UIImageView *imageVw;
+@property (weak, nonatomic) IBOutlet UIImageView *otherImage;
 
 @property (weak, nonatomic) IBOutlet UITextField *textUser;
 @property (weak, nonatomic) IBOutlet UITextField *textPassword;
@@ -29,7 +30,6 @@
 @property (nonatomic,copy)NSString* LXC;
 @property (nonatomic,copy)NSString* str;
 @property (nonatomic,copy)NSString* lxcStr;
->>>>>>> e7c44b6f6308e90df65658381d3bf9bd8834c0f5
 
 @property (nonatomic,strong)RACDisposable* loadingDispose;
 @property (nonatomic,strong)RACSignal* signal;
@@ -98,6 +98,7 @@
             
             return [self creatSignal];
         }];
+        
         
         [[_command.executionSignals concat]subscribeNext:^(id x) {
             NSLog(@"?????????");
@@ -177,7 +178,7 @@
 //    }] take:1] subscribeNext:^(id x) {
 //        NSLog(@"only 1 and 2 will be print: %@", x);
 //    }];
->>>>>>> e7c44b6f6308e90df65658381d3bf9bd8834c0f5
+
     
     [[[RACSignal createSignal:^RACDisposable *(id subscriber) {
         [subscriber sendNext:@"1"];
@@ -307,18 +308,19 @@
     }];
     
     self.loadBtn.rac_command = self.command;//保证执行过程中，不会执行其他操作
-    
+    //显示图片两种RAC方法
     [[[self fetchImageURL]map:^id(NSData* value) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"image = %@",value);
             self.imageVw.image = [UIImage imageWithData:value];
-            NSLog(@"data = %@",value);
+            
         });
         return value;
     }]subscribeNext:^(NSData* x) {
         
     }];
     
-
+    [self showImage];//后台网络请求回到主线程刷新UI
 }
 #pragma mark - 延时5秒
 - (void)delayFiveSecond
@@ -385,10 +387,31 @@
     
     RAC(self.showObsever,text) = [RACSignal merge:@[startSkip,completedSkip,failedSkip]];
 }
+#pragma mark - RACShedule//显示网络图片
+- (void)showImage
+{
+    RAC(self.otherImage,image) = [[RACSignal startEagerlyWithScheduler:[RACScheduler schedulerWithPriority:RACSchedulerPriorityBackground] block:^(id<RACSubscriber> subscriber) {//发起请求
+        NSError* error;
+        NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://pic14.nipic.com/20110522/7411759_164157418126_2.jpg"]
+                                             options:NSDataReadingMappedAlways
+                                               error:&error];
+        if (error) {
+            [subscriber sendError:error];
+        }else{
+            [subscriber sendNext:[UIImage imageWithData:data]];
+            [subscriber sendCompleted];
+        }
+        
+        
+    }]deliverOn:[RACScheduler mainThreadScheduler]];
+    
+    
+}
+
 #pragma mark - 网络请求
 - (RACSignal*)fetchImageURL
 {
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    RACSignal* request = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         
         NSString* imageUrl = @"http://pica.nipic.com/2008-01-09/200819134250665_2.jpg";
@@ -397,27 +420,44 @@
         NSURLRequest* request = [NSURLRequest requestWithURL:url];
         self.session = [NSURLSession sharedSession];
         NSURLSessionDataTask* dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            NSLog(@"%@",response);
+//            NSLog(@"%@",response);
             
             if (!error) {
                 [subscriber sendNext:data];
                 
             }else{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.showObsever.text = @"error";
+                });
                 [subscriber sendError:error];
             }
             
             [subscriber sendCompleted];
+            
+            
         }];
         
         [dataTask resume];
         
         return [RACDisposable disposableWithBlock:^{
-            [dataTask cancel];
-            NSLog(@"========================");
+            
+            if (dataTask.state != NSURLSessionTaskStateCompleted) {
+                [dataTask cancel];
+//                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                NSLog(@"============?============");
+            }
         }];
         
     }];
     
+    //避免重复请求
+    RACMulticastConnection* requestMutilConnetion = [request multicast:[RACReplaySubject subject]];
+    [requestMutilConnetion connect];
+    
+    return [request flattenMap:^RACStream *(NSData* value) {
+        NSLog(@"data = %@",value);
+        return [RACSignal return:value];
+    }];
     
     
 }
