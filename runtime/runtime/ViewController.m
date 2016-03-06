@@ -8,19 +8,35 @@
 
 #import "ViewController.h"
 #import <objc/runtime.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 @interface ViewController ()
+{
+    NSString* str;
+}
+
+@property (weak, nonatomic) IBOutlet UITextField *textInput;
 
 @end
 
 @implementation ViewController
+- (IBAction)goSecondVc:(id)sender {
+    [ViewController runtimeSecondVc:@"secondViewController" navi:self.navigationController andValue:self.textInput.text];
+   self.textInput.text = @"";
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self performSelector:@selector(doSomething)];
-    
     [self performSelector:@selector(secondVCMethod)];
     
-    [ViewController runtimeSendValue:@"secondViewController" navi:self.navigationController];
+    
+    [[self.textInput.rac_textSignal filter:^BOOL(NSString* text) {
+        return text.length > 0;
+    }]subscribeNext:^(id x) {
+        [ViewController runtimeSecondVc:@"secondViewController" navi:nil andValue:self.textInput.text];
+    }];;
+    
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 -(id)forwardingTargetForSelector:(SEL)aSelector
@@ -54,7 +70,7 @@ void dynamicMethodIMP(id self,SEL _cmd){
 
 
 #pragma mark - 实现传值
-+ (void)runtimeSendValue:(NSString*)vcName navi:(UINavigationController*)navi
++ (void)runtimeSecondVc:(NSString*)vcName navi:(UINavigationController*)navi andValue:(NSString*)value
 {
     NSString* class = vcName;
     
@@ -68,17 +84,22 @@ void dynamicMethodIMP(id self,SEL _cmd){
         objc_registerClassPair(newClass);
     }
     //创建对象
-    id instance = [[newClass alloc]init];
-    
-    //传值
+    id instance;
+    if (instance == nil) {
+        instance = [[newClass alloc]init];
+    }
+    //传值(判断是否有这一属性)
     if ([self checkIsExistPropertyWithInstance:instance verifyPropertyName:@"LXC"]) {
-        [instance setValue:@"刘小椿" forKey:@"LXC"];
+        NSLog(@"有该属性");
+        [instance setValue:value forKey:@"LXC"];
+        
     }else{
         NSLog(@"没有该属性");
     }
-    
     [navi pushViewController:instance animated:YES];
 }
+
+
 /**
  *  检测对象是否存在该属性
  */

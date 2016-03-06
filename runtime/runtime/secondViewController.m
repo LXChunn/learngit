@@ -7,6 +7,8 @@
 //
 
 #import "secondViewController.h"
+#import <objc/runtime.h>
+
 
 @interface secondViewController ()
 @property(nonatomic,strong)UILabel* textLb;
@@ -19,18 +21,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.textLb = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2 - 60, self.view.frame.size.height/2 - 30, 120, 120)];
+    self.textLb = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2 - 60, self.view.frame.size.height/2 - 30, 120, 20)];
     self.textLb.backgroundColor = [UIColor yellowColor];
     [self.view addSubview:self.textLb];
     
     UIButton* btn = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2 - 60, self.view.frame.size.height/2 + 100, 120, 120)];
     [btn setTitle:@"返回" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(backTo) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
     
     
     self.view.backgroundColor = [UIColor redColor];
     // Do any additional setup after loading the view.
 }
+- (void)backTo
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    
+}
+
 - (void)secondVCMethod
 {
     NSLog(@"This is secondVC method !");
