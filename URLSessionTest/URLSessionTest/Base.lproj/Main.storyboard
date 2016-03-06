@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="orm-Ix-8Rm">
+                                <rect key="frame" x="67" y="282" width="60" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="QSB-rV-JWz"/>
+                                    <constraint firstAttribute="height" constant="30" id="Yko-ia-5fz"/>
+                                </constraints>
+                                <state key="normal" title="简单请求"/>
+                                <connections>
+                                    <action selector="simpleRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J8h-bs-jAG"/>
+                                </connections>
+                            </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="40G-eS-MBf">
+                                <rect key="frame" x="20" y="201" width="335" height="2"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="5IA-sc-3y9"/>
+                                </constraints>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已下载" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Dy-QZ-2vQ">
+                                <rect key="frame" x="20" y="240" width="342" height="21"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="ahd-cu-6f4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uyw-0Z-YRe">
+                                <rect key="frame" x="209" y="282" width="108" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="108" id="TlO-Vc-8Le"/>
+                                    <constraint firstAttribute="height" constant="30" id="ZJ4-bG-F3r"/>
+                                </constraints>
+                                <state key="normal" title="取消请求"/>
+                                <connections>
+                                    <action selector="cancelRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5eC-Hf-Wib"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YvA-le-70t">
+                                <rect key="frame" x="40" y="37" width="295" height="128"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="2H3-w0-LCY"/>
+                                    <constraint firstAttribute="width" constant="240" id="sUY-JH-eei"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="sUY-JH-eei"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0cc-50-zYn">
+                                <rect key="frame" x="60" y="337" width="60" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="8eq-hz-wl6"/>
+                                    <constraint firstAttribute="width" constant="60" id="bQu-tC-2Xe"/>
+                                </constraints>
+                                <state key="normal" title="删除文件"/>
+                                <connections>
+                                    <action selector="deleteImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nE4-2G-dw1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1Dy-QZ-2vQ" firstAttribute="top" secondItem="40G-eS-MBf" secondAttribute="bottom" constant="37" id="1qC-bK-Cc5"/>
+                            <constraint firstItem="0cc-50-zYn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="60" id="5ZA-qn-XZK"/>
+                            <constraint firstItem="40G-eS-MBf" firstAttribute="top" secondItem="YvA-le-70t" secondAttribute="bottom" constant="36" id="6iH-zT-u71"/>
+                            <constraint firstItem="1Dy-QZ-2vQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="7e8-zW-K2Z"/>
+                            <constraint firstAttribute="trailing" secondItem="1Dy-QZ-2vQ" secondAttribute="trailing" constant="13" id="AvM-Vz-baw"/>
+                            <constraint firstAttribute="trailing" secondItem="uyw-0Z-YRe" secondAttribute="trailing" constant="58" id="GEe-BD-6W5"/>
+                            <constraint firstItem="orm-Ix-8Rm" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="282" id="I4Q-I7-HkE"/>
+                            <constraint firstItem="YvA-le-70t" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="40" id="OdB-dA-FYI"/>
+                            <constraint firstItem="orm-Ix-8Rm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="51" id="aER-IG-gqz"/>
+                            <constraint firstItem="0cc-50-zYn" firstAttribute="top" secondItem="orm-Ix-8Rm" secondAttribute="bottom" constant="25" id="b94-5M-kWq"/>
+                            <constraint firstItem="YvA-le-70t" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="37" id="j32-cE-7ji"/>
+                            <constraint firstAttribute="trailing" secondItem="40G-eS-MBf" secondAttribute="trailing" constant="20" id="m5V-23-Jke"/>
+                            <constraint firstItem="uyw-0Z-YRe" firstAttribute="top" secondItem="1Dy-QZ-2vQ" secondAttribute="bottom" constant="21" id="om6-Y7-7dM"/>
+                            <constraint firstAttribute="trailing" secondItem="YvA-le-70t" secondAttribute="trailing" constant="40" id="uKF-Qu-hXg"/>
+                            <constraint firstItem="40G-eS-MBf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="z5M-fr-fgx"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="deleteBtn" destination="0cc-50-zYn" id="Qj8-78-tuX"/>
+                        <outlet property="imageWithBlock" destination="YvA-le-70t" id="8Yh-dy-qgH"/>
+                        <outlet property="lab" destination="1Dy-QZ-2vQ" id="Nt7-sR-zkL"/>
+                        <outlet property="progressView" destination="40G-eS-MBf" id="tb7-IK-ULJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-96.5" y="186.5"/>
+        </scene>
+    </scenes>
+</document>

@@ -51,7 +51,12 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     NSLog(@"text = %@",self.LXC);
-    self.textLb.text = self.LXC;
+//    self.textLb.text = self.LXC;
+    
+    
+    
+    
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
