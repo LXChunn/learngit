@@ -88,19 +88,17 @@
 {
     if (!_command) {
         _command = [[RACCommand alloc]initWithEnabled:self.signal signalBlock:^RACSignal *(id input) {
-            NSLog(@"dianjile .........验证之后，可以登陆..........");
+            NSLog(@".........验证之后，可以登陆..........");
+            return [self creatSignal];
+        }];
+        //现在理解就是配套的
+        [[[_command executionSignals] concat]subscribeNext:^(id x) {
             self.liu = @"";
             self.textUser.backgroundColor = [UIColor whiteColor];
             
             self.xiao = @"";
             self.textPassword.text = @"";
             self.textPassword.backgroundColor = [UIColor whiteColor];
-            
-            return [self creatSignal];
-        }];
-        
-        
-        [[_command.executionSignals concat]subscribeNext:^(id x) {
             NSLog(@"?????????");
         }];
     }
@@ -111,10 +109,51 @@
     [self.textUser resignFirstResponder];
     [self.textPassword resignFirstResponder];
 }
+//研究concat
+- (void)concat
+{
+    RACSignal *fristSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+                 NSLog(@"oneSignal createSignal");
+                 [subscriber sendNext:@""];
+                 [subscriber sendCompleted];
+        
+                 return [RACDisposable disposableWithBlock:^{
+                         NSLog(@"oneSignal dispose");
+                     }];
+             }];
+    
+         RACMulticastConnection *connection = [fristSignal multicast:[RACReplaySubject subject]];
+    
+         [connection connect];
+    
+//         [connection.signal subscribeNext:^(id x) {
+//                 NSLog(@"2");
+//             }];
+    RACSignal *afterConcat = [connection.signal concat:[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        [subscriber sendNext:@""];
+        return nil;
+    }]];
+//
+
+    
+//    RACSignal *afterConcat = [connection.signal then:^RACSignal *{
+//        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+//                         [subscriber sendNext:@""];
+//                         return nil;
+//                     }];
+//    }];
+    
+    [afterConcat subscribeNext:^(id x) {
+        NSLog(@"afterConcat subscribeNext");
+    }];
+    
+    
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     NSLog(@"%@",[NSHomeDirectory() stringByAppendingString:@""]);
-    
+    [self concat];
     
     
     self.navigationController.navigationBar.hidden = YES;
@@ -311,7 +350,7 @@
     //显示图片两种RAC方法
     [[[self fetchImageURL]map:^id(NSData* value) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"image = %@",value);
+//            NSLog(@"image = %@",value);
             self.imageVw.image = [UIImage imageWithData:value];
             
         });
@@ -447,7 +486,6 @@
                 NSLog(@"============?============");
             }
         }];
-        
     }];
     
     //避免重复请求
@@ -455,7 +493,7 @@
     [requestMutilConnetion connect];
     
     return [request flattenMap:^RACStream *(NSData* value) {
-        NSLog(@"data = %@",value);
+//        NSLog(@"data = %@",value);
         return [RACSignal return:value];
     }];
     
