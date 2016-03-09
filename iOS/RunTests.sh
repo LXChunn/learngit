@@ -1,1 +1,0 @@
-xctool -workspace XPApp.xcworkspace -scheme XPApp test -only AppTests

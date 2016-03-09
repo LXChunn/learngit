@@ -1,1 +1,0 @@
-../../../SOMotionDetector/SOMotionDetector/SOLocationManager.h

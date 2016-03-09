@@ -1,1 +1,0 @@
-../../../NSObject+AutoDescription/NSObject+AutoDescription/NSObject+CleanDescription.h

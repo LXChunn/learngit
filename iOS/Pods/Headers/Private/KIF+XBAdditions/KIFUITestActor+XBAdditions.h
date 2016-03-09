@@ -1,1 +1,0 @@
-../../../KIF+XBAdditions/Classes/KIFUITestActor+XBAdditions.h
