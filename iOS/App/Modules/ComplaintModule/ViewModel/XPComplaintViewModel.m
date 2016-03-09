@@ -47,7 +47,6 @@
         }];
         XPViewModelShortHand(_complaintCommand)
     }
-    
     return _complaintCommand;
 }
 
