@@ -1,1 +1,0 @@
-../../../SOMotionDetector/SOMotionDetector/SOMotionDetector.h

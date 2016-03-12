@@ -10,6 +10,8 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "AFNetworking.h"
 #import "UIKit+AFNetworking.h"
+#import "XCViewModel.h"
+
 
 @interface ViewController ()<UITextFieldDelegate>
 {
@@ -19,6 +21,8 @@
 @property (nonatomic,strong)RACCommand* command;
 @property (weak, nonatomic) IBOutlet UIImageView *imageVw;
 @property (weak, nonatomic) IBOutlet UIImageView *otherImage;
+
+@property (nonatomic,strong)XCViewModel* viewModel;
 
 @property (weak, nonatomic) IBOutlet UITextField *textUser;
 @property (weak, nonatomic) IBOutlet UITextField *textPassword;
@@ -88,9 +92,10 @@
 {
     if (!_command) {
         _command = [[RACCommand alloc]initWithEnabled:self.signal signalBlock:^RACSignal *(id input) {
-            NSLog(@".........验证之后，可以登陆..........");
+            NSLog(@"..........验证之后，可以登陆..........");
             return [self creatSignal];
         }];
+        
         //现在理解就是配套的
         [[[_command executionSignals] concat]subscribeNext:^(id x) {
             self.liu = @"";
@@ -172,6 +177,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.viewModel = [[XCViewModel alloc]init];
+    [[RACObserve(self.viewModel, list) ignore:nil] subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    }];
+    
+    [self.viewModel.listCommand execute:nil];
+    
     [self map];//按钮点击网络请求，错误处理。。。
     NSArray* array = @[@(1),@(2),@(3),@(4)];
     NSLog(@"%@",[[[array rac_sequence]map:^id(id value){

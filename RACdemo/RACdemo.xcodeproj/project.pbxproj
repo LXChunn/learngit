@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		03DBB265237DA0AF352D1087 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C259C05F32833A1DFD9334 /* Pods.framework */; };
 		4F5E36051C84176A000A5672 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5E36041C84176A000A5672 /* Result.framework */; };
+		4F5E38D91C914667000A5672 /* XCViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E38D81C914667000A5672 /* XCViewModel.m */; };
 		4FF3A7401C7E8DDA008F59EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF3A73F1C7E8DDA008F59EE /* main.m */; };
 		4FF3A7431C7E8DDA008F59EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF3A7421C7E8DDA008F59EE /* AppDelegate.m */; };
 		4FF3A7461C7E8DDA008F59EE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF3A7451C7E8DDA008F59EE /* ViewController.m */; };
@@ -44,6 +45,8 @@
 		4F5E36041C84176A000A5672 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = "Pods/../build/Debug-iphoneos/Result.framework"; sourceTree = "<group>"; };
 		4F5E36061C8417EC000A5672 /* secondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = secondViewController.h; sourceTree = "<group>"; };
 		4F5E36071C84182A000A5672 /* threeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = threeViewController.h; sourceTree = "<group>"; };
+		4F5E38D71C914667000A5672 /* XCViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCViewModel.h; sourceTree = "<group>"; };
+		4F5E38D81C914667000A5672 /* XCViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCViewModel.m; sourceTree = "<group>"; };
 		4FF3A73B1C7E8DDA008F59EE /* RACdemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RACdemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FF3A73F1C7E8DDA008F59EE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4FF3A7411C7E8DDA008F59EE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -126,6 +129,8 @@
 				4FF3A74C1C7E8DDA008F59EE /* LaunchScreen.storyboard */,
 				4FF3A74F1C7E8DDA008F59EE /* Info.plist */,
 				4FF3A73E1C7E8DDA008F59EE /* Supporting Files */,
+				4F5E38D71C914667000A5672 /* XCViewModel.h */,
+				4F5E38D81C914667000A5672 /* XCViewModel.m */,
 			);
 			path = RACdemo;
 			sourceTree = "<group>";
@@ -364,6 +369,7 @@
 				735AAE9E1C809F99005DFA58 /* threeViewController.m in Sources */,
 				4FF3A7431C7E8DDA008F59EE /* AppDelegate.m in Sources */,
 				4FF3A7401C7E8DDA008F59EE /* main.m in Sources */,
+				4F5E38D91C914667000A5672 /* XCViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
