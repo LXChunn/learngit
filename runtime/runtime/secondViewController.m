@@ -8,7 +8,7 @@
 
 #import "secondViewController.h"
 #import <objc/runtime.h>
-
+#import "ViewController.h"
 
 @interface secondViewController ()
 @property(nonatomic,strong)UILabel* textLb;
@@ -51,8 +51,9 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     NSLog(@"text = %@",self.LXC);
-    self.textLb.text = self.LXC;
-    
+//    self.textLb.text = self.LXC;
+    ViewController* object = [[ViewController alloc]init];
+    self.textLb.text = objc_getAssociatedObject(object, @"key");
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

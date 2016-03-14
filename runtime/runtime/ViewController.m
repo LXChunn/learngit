@@ -91,7 +91,8 @@ void dynamicMethodIMP(id self,SEL _cmd){
     //传值(判断是否有这一属性)
     if ([self checkIsExistPropertyWithInstance:instance verifyPropertyName:@"LXC"]) {
         NSLog(@"有该属性");
-        [instance setValue:value forKey:@"LXC"];
+//        [instance setValue:value forKey:@"LXC"];
+        objc_setAssociatedObject(self, @"key", value, OBJC_ASSOCIATION_COPY_NONATOMIC);
         
     }else{
         NSLog(@"没有该属性");
