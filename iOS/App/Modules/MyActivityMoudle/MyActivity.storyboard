@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9R3-98-o9x">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <scenes>
+        <!--My Activity View Controller-->
+        <scene sceneID="LJv-pt-Dag">
+            <objects>
+                <viewController storyboardIdentifier="XPMyActivityViewController" hidesBottomBarWhenPushed="YES" id="9R3-98-o9x" customClass="XPMyActivityViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7rC-nP-0US"/>
+                        <viewControllerLayoutGuide type="bottom" id="cZ4-IS-voe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PGB-o4-y3f">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="l3j-yk-WAK">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="9R3-98-o9x" id="qbi-VP-4cg"/>
+                                    <outlet property="delegate" destination="9R3-98-o9x" id="L36-24-wqI"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="l3j-yk-WAK" secondAttribute="trailing" id="6LC-F6-KE5"/>
+                            <constraint firstItem="l3j-yk-WAK" firstAttribute="leading" secondItem="PGB-o4-y3f" secondAttribute="leading" id="Eap-AR-XmL"/>
+                            <constraint firstAttribute="bottom" secondItem="l3j-yk-WAK" secondAttribute="bottom" id="gPT-kL-FL3"/>
+                            <constraint firstItem="l3j-yk-WAK" firstAttribute="top" secondItem="PGB-o4-y3f" secondAttribute="top" id="rOq-Jo-aJz"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <connections>
+                        <outlet property="activityModel" destination="uax-lI-fQk" id="bHT-OZ-JTX"/>
+                        <outlet property="tableView" destination="l3j-yk-WAK" id="QrK-Lt-fEv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EQi-lF-P26" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="uax-lI-fQk" customClass="XPActivitViewModel"/>
+            </objects>
+            <point key="canvasLocation" x="205" y="113"/>
+        </scene>
+    </scenes>
+</document>

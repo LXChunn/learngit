@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YqE-lh-ypv">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <scenes>
+        <!--发布帖子-->
+        <scene sceneID="a7C-Mb-OUS">
+            <objects>
+                <viewController storyboardIdentifier="XPCreatePostViewController" hidesBottomBarWhenPushed="YES" id="YqE-lh-ypv" customClass="XPCreatePostViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rmB-D9-TrO"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ood-ir-cxS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rxO-PC-iZJ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1hk-2Z-neO">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="YqE-lh-ypv" id="Fnc-Bv-rkG"/>
+                                    <outlet property="delegate" destination="YqE-lh-ypv" id="tgD-0L-hC4"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1hk-2Z-neO" firstAttribute="leading" secondItem="rxO-PC-iZJ" secondAttribute="leading" id="PGo-26-fmx"/>
+                            <constraint firstAttribute="trailing" secondItem="1hk-2Z-neO" secondAttribute="trailing" id="R1p-7D-cI6"/>
+                            <constraint firstItem="1hk-2Z-neO" firstAttribute="top" secondItem="rxO-PC-iZJ" secondAttribute="top" id="cdI-HG-Mwg"/>
+                            <constraint firstAttribute="bottom" secondItem="1hk-2Z-neO" secondAttribute="bottom" id="dQh-2C-pC6"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" title="发布帖子" id="cZI-Tg-laA">
+                        <barButtonItem key="rightBarButtonItem" title="发布" id="A6U-hS-f9X">
+                            <connections>
+                                <action selector="submitPostAction:" destination="YqE-lh-ypv" id="wS4-Sl-kjY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="myTableView" destination="1hk-2Z-neO" id="FCT-Sc-ctV"/>
+                        <outlet property="submitPostMessage" destination="A6U-hS-f9X" id="5oA-IE-Bqs"/>
+                        <outlet property="viewModel" destination="RDw-nS-H2a" id="8e1-2z-2gE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qtm-Sp-VQN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="RDw-nS-H2a" customClass="XPCreatePostViewModel"/>
+            </objects>
+            <point key="canvasLocation" x="346" y="260"/>
+        </scene>
+    </scenes>
+</document>

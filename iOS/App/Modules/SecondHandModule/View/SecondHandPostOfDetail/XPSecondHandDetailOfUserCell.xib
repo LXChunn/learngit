@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="XPSecondHandDetailOfUserCell" rowHeight="67" id="moB-WU-IX3" customClass="XPSecondHandDetailOfUserCell">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="67"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="moB-WU-IX3" id="08v-dd-ELM">
+                <rect key="frame" x="0.0" y="0.0" width="600" height="66"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vdh-yY-skR">
+                        <rect key="frame" x="11" y="13" width="38" height="38"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="38" id="Hph-iT-ilt"/>
+                            <constraint firstAttribute="height" constant="38" id="I9F-Qf-l2G"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="19"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="                   " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pP2-cg-l1b">
+                        <rect key="frame" x="63" y="15" width="73" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="OLe-xd-6rv"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.2784313725" green="0.2784313725" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="               " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nyc-gD-eJP">
+                        <rect key="frame" x="63" y="34" width="58" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="U6w-9U-1o5"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.2784313725" green="0.2784313725" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEh-wl-MTt">
+                        <rect key="frame" x="537" y="11" width="44" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="44" id="HNm-c3-pGm"/>
+                            <constraint firstAttribute="height" constant="44" id="cp1-5e-iP9"/>
+                        </constraints>
+                        <state key="normal" image="common_phone_normal"/>
+                        <state key="highlighted" image="common_phone_clicked"/>
+                        <connections>
+                            <action selector="callAction:" destination="moB-WU-IX3" eventType="touchUpInside" id="eFN-0M-iEn"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hu5-wZ-msF">
+                        <rect key="frame" x="10" y="65" width="580" height="1"/>
+                        <color key="backgroundColor" red="0.83137254900000002" green="0.83137254900000002" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="aqR-bW-7Ok"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Hu5-wZ-msF" firstAttribute="leading" secondItem="08v-dd-ELM" secondAttribute="leading" constant="10" id="1rT-uy-D12"/>
+                    <constraint firstItem="Vdh-yY-skR" firstAttribute="leading" secondItem="08v-dd-ELM" secondAttribute="leading" constant="11" id="9j3-dj-Igu"/>
+                    <constraint firstAttribute="trailing" secondItem="Hu5-wZ-msF" secondAttribute="trailing" constant="10" id="ZMX-pW-vzH"/>
+                    <constraint firstItem="Hu5-wZ-msF" firstAttribute="top" secondItem="WEh-wl-MTt" secondAttribute="bottom" constant="10" id="ZUQ-fp-Chj"/>
+                    <constraint firstItem="Vdh-yY-skR" firstAttribute="top" secondItem="08v-dd-ELM" secondAttribute="top" constant="13" id="a5d-st-G2g"/>
+                    <constraint firstItem="pP2-cg-l1b" firstAttribute="top" secondItem="08v-dd-ELM" secondAttribute="top" constant="15" id="iTq-ee-4tq"/>
+                    <constraint firstAttribute="trailing" secondItem="WEh-wl-MTt" secondAttribute="trailing" constant="19" id="ifX-kC-HAY"/>
+                    <constraint firstItem="Nyc-gD-eJP" firstAttribute="leading" secondItem="Vdh-yY-skR" secondAttribute="trailing" constant="14" id="jd8-Q9-Lod"/>
+                    <constraint firstItem="pP2-cg-l1b" firstAttribute="leading" secondItem="Vdh-yY-skR" secondAttribute="trailing" constant="14" id="nmD-dx-02U"/>
+                    <constraint firstItem="Nyc-gD-eJP" firstAttribute="top" secondItem="pP2-cg-l1b" secondAttribute="bottom" constant="2" id="pyI-AM-Weo"/>
+                    <constraint firstItem="WEh-wl-MTt" firstAttribute="top" secondItem="08v-dd-ELM" secondAttribute="top" constant="11" id="y7y-7Y-9si"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="avatorImageView" destination="Vdh-yY-skR" id="s8i-wn-eSf"/>
+                <outlet property="nickNameLabel" destination="pP2-cg-l1b" id="FQY-UM-5Jb"/>
+                <outlet property="phoneButton" destination="WEh-wl-MTt" id="Md8-Ki-c3V"/>
+                <outlet property="timeLabel" destination="Nyc-gD-eJP" id="ZEG-Bp-79J"/>
+            </connections>
+            <point key="canvasLocation" x="463" y="258.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="common_phone_clicked" width="22" height="22"/>
+        <image name="common_phone_normal" width="22" height="22"/>
+    </resources>
+</document>

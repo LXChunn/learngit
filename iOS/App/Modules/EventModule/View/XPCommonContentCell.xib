@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="XPCommonContentCell" rowHeight="157" id="3IK-mC-qDk" customClass="XPCommonContentCell">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="157"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3IK-mC-qDk" id="p8Z-vR-vXq">
+                <rect key="frame" x="0.0" y="0.0" width="600" height="156"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7b0-XF-UxO">
+                        <rect key="frame" x="13" y="155" width="574" height="1"/>
+                        <color key="backgroundColor" red="0.83137254900000002" green="0.83137254900000002" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="hdf-4Z-1n9"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.59215686270000001" green="0.59215686270000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Hlh-Fz-jtm" customClass="XPTextView">
+                        <rect key="frame" x="8" y="0.0" width="584" height="154"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="textColor" red="0.2784313725" green="0.2784313725" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="maxInputLength">
+                                <integer key="value" value="2000"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="showInputting" value="YES"/>
+                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                <color key="value" red="0.78039215689999997" green="0.78039215689999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </textView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="7b0-XF-UxO" secondAttribute="bottom" id="Gx4-L1-smu"/>
+                    <constraint firstAttribute="bottom" secondItem="Hlh-Fz-jtm" secondAttribute="bottom" constant="2" id="HPS-ne-Hdm"/>
+                    <constraint firstItem="Hlh-Fz-jtm" firstAttribute="top" secondItem="p8Z-vR-vXq" secondAttribute="top" id="PTe-p1-MT2"/>
+                    <constraint firstAttribute="trailing" secondItem="7b0-XF-UxO" secondAttribute="trailing" constant="13" id="UQH-GC-MYF"/>
+                    <constraint firstItem="Hlh-Fz-jtm" firstAttribute="leading" secondItem="p8Z-vR-vXq" secondAttribute="leading" constant="8" id="c99-Bj-HZo"/>
+                    <constraint firstAttribute="trailing" secondItem="Hlh-Fz-jtm" secondAttribute="trailing" constant="8" id="poH-ks-sLn"/>
+                    <constraint firstItem="7b0-XF-UxO" firstAttribute="leading" secondItem="p8Z-vR-vXq" secondAttribute="leading" constant="13" id="rcM-Yj-dJW"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="textView" destination="Hlh-Fz-jtm" id="NVk-vD-dr2"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

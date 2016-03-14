@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="XPNoNetworkView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nYD-RV-tlh">
+                    <rect key="frame" x="163" y="146" width="274" height="308"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_web" translatesAutoresizingMaskIntoConstraints="NO" id="crt-CK-jzP">
+                            <rect key="frame" x="52" y="20" width="170" height="130"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="170" id="3Kp-7w-iBw"/>
+                                <constraint firstAttribute="height" constant="130" id="waO-Ca-6Nz"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="网络不太给力，请稍后再试" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iZ2-AS-IhS">
+                            <rect key="frame" x="20" y="196" width="234" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="s5D-3c-oY8"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" red="0.2784313725" green="0.2784313725" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iMV-i5-hEv">
+                            <rect key="frame" x="60" y="246" width="155" height="42"/>
+                            <color key="backgroundColor" red="0.14901960780000001" green="0.4039215686" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="42" id="2mJ-No-iWf"/>
+                                <constraint firstAttribute="width" constant="155" id="64M-38-kgT"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <state key="normal" title="重新加载">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="tryAgainAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="b6p-BZ-k8x"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="308" id="65k-9I-XxJ"/>
+                        <constraint firstItem="iZ2-AS-IhS" firstAttribute="leading" secondItem="nYD-RV-tlh" secondAttribute="leading" constant="20" id="H3e-Nz-Z5u"/>
+                        <constraint firstItem="iMV-i5-hEv" firstAttribute="top" secondItem="iZ2-AS-IhS" secondAttribute="bottom" constant="29" id="HeT-yJ-Ibn"/>
+                        <constraint firstItem="crt-CK-jzP" firstAttribute="leading" secondItem="nYD-RV-tlh" secondAttribute="leading" constant="52" id="KCN-kJ-4bf"/>
+                        <constraint firstItem="iMV-i5-hEv" firstAttribute="leading" secondItem="nYD-RV-tlh" secondAttribute="leading" constant="60" id="RMh-Ml-8wD"/>
+                        <constraint firstItem="crt-CK-jzP" firstAttribute="top" secondItem="nYD-RV-tlh" secondAttribute="top" constant="20" id="TEK-LJ-AOj"/>
+                        <constraint firstAttribute="width" constant="274" id="Wgk-er-pit"/>
+                        <constraint firstAttribute="trailing" secondItem="iMV-i5-hEv" secondAttribute="trailing" constant="59" id="aYh-B6-SvT"/>
+                        <constraint firstItem="iZ2-AS-IhS" firstAttribute="top" secondItem="crt-CK-jzP" secondAttribute="bottom" constant="46" id="hLn-ZE-qXz"/>
+                        <constraint firstAttribute="trailing" secondItem="crt-CK-jzP" secondAttribute="trailing" constant="52" id="owH-zv-v1F"/>
+                        <constraint firstAttribute="trailing" secondItem="iZ2-AS-IhS" secondAttribute="trailing" constant="20" id="zWr-xk-V7e"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="nYD-RV-tlh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="3Yv-r6-0xE"/>
+                <constraint firstItem="nYD-RV-tlh" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="W3W-S6-G5u"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="image_web" width="170" height="130"/>
+    </resources>
+</document>

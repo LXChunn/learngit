@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pdk-US-hvM">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--社区论坛-->
+        <scene sceneID="Vkj-VI-fzE">
+            <objects>
+                <viewController storyboardIdentifier="XPTopicViewController" hidesBottomBarWhenPushed="YES" id="pdk-US-hvM" customClass="XPTopicViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="whk-Rz-IhS"/>
+                        <viewControllerLayoutGuide type="bottom" id="iGF-MQ-eEp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gM6-fO-X2X">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="102" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VFc-WO-hhK">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="pdk-US-hvM" id="Cic-cr-grq"/>
+                                    <outlet property="delegate" destination="pdk-US-hvM" id="X68-Vk-0Eo"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VFc-WO-hhK" firstAttribute="top" secondItem="gM6-fO-X2X" secondAttribute="topMargin" id="FuK-b8-yjK"/>
+                            <constraint firstAttribute="trailing" secondItem="VFc-WO-hhK" secondAttribute="trailing" id="STf-S9-zE4"/>
+                            <constraint firstAttribute="bottom" secondItem="VFc-WO-hhK" secondAttribute="bottom" id="UBl-93-7OJ"/>
+                            <constraint firstItem="VFc-WO-hhK" firstAttribute="leading" secondItem="gM6-fO-X2X" secondAttribute="leading" id="vmc-Qd-1ZP"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" title="社区论坛" id="66E-QY-LqE">
+                        <barButtonItem key="rightBarButtonItem" image="common_navigation_add_button" id="Fs8-Ev-iWp">
+                            <connections>
+                                <action selector="addMoreAction:" destination="pdk-US-hvM" id="bEJ-va-vyZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="moreBtn" destination="Fs8-Ev-iWp" id="oB1-CR-PHw"/>
+                        <outlet property="tableView" destination="VFc-WO-hhK" id="eaQ-t7-4ai"/>
+                        <outlet property="topicViewModel" destination="Mle-Mv-RQU" id="DrN-ol-mOX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tdN-b4-L5t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="Mle-Mv-RQU" customClass="XPTopicViewModel"/>
+            </objects>
+            <point key="canvasLocation" x="768" y="354"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="common_navigation_add_button" width="20" height="20"/>
+    </resources>
+</document>

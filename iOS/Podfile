@@ -1,0 +1,86 @@
+# CocoaPod官方源
+#source 'https://github.com/CocoaPods/Specs.git'
+# CocoaPod国内镜像源
+source 'https://gitcafe.com/akuandev/Specs.git'
+
+platform :ios, '7.1'
+inhibit_all_warnings!
+xcodeproj 'XPApp'
+
+target 'XPApp' do
+ 
+    # DEBUG
+    pod 'UMengAnalytics-NO-IDFA', '>= 3.5.17'
+    pod 'AFNetworkActivityLogger', '>= 2.0.4'
+    pod 'MMPlaceHolder', '>= 1.9'
+    pod 'NSLogger', '>= 1.5.1'
+    pod 'AFNetworkingMeter', :git => 'https://git.coding.net/huangxinping/AFNetworkingMeter.git', :tag => '1.0'
+
+    # 快捷工具库
+    pod 'XPAutoNIBColor', :git => 'https://git.coding.net/huangxinping/XPAutoNIBColor.git', :tag => '1.0'
+    pod 'XPAutoNIBi18n', :git => 'https://git.coding.net/huangxinping/XPAutoNIBi18n.git', :tag => '1.0'
+    pod 'XPKit', :git => 'https://git.coding.net/huangxinping/XPKit.git', :tag => '1.1.1'
+    pod 'XPStorage', :git => 'https://git.coding.net/huangxinping/XPStorage.git', :tag => '1.1.0'
+    pod 'XPFMDBEncrypt', :git => 'https://git.coding.net/huangxinping/XPFMDBEncrypt.git', :tag => '1.0.2'
+    pod 'XPToast', :git => 'https://git.coding.net/huangxinping/XPToast.git', :tag => '1.0.3'
+    pod 'XPAdPageView', :git => 'https://git.coding.net/huangxinping/XPAdPageView.git', :tag => '0.1.2'
+    pod 'XPTextView', :git => 'https://git.coding.net/huangxinping/XPTextView.git', :tag => '1.0.4'
+    pod 'XPCountDownButton', :git => 'https://git.coding.net/huangxinping/XPCountDownButton.git', :tag => '1.0.1'
+    pod 'JZNavigationExtension', :git => 'https://coding.net/huangxinping/JZNavigationExtension.git', :tag => '1.0.1'
+    pod 'IQKeyboardManager', '>= 3.3.0'
+    pod 'UISS', '>= 1.1.2'
+    pod 'OCUDL', '>= 0.2.1'
+    pod 'M13BadgeView', '~> 1.0.4'
+    pod 'XPWebView', :git => 'https://git.coding.net/huangxinping/XPWebView.git', :tag => '1.2'
+
+    # FRP & MVVM
+    pod 'ReactiveCocoa', '>= 2.4.2'
+    pod 'ReactiveViewModel', '>= 0.3'
+    pod 'AFNetworking-RACExtensions', '>= 0.1.6'
+    pod 'RACAutoDisposer', '>= 0.2.0'
+
+    # 提升效率
+    pod 'Aspects', '>= 1.4.1'
+    pod 'Masonry', '>= 0.6.2'
+    pod 'NSObject+AutoDescription', '>= 0.1'
+    pod 'NSObject-Tap', '>= 1.0.1'
+    pod 'NSObject-NSCoding', '>=1.0'
+
+    # 模型&数据
+    pod 'JSONModel', '>= 1.0.1'
+    pod 'JSONModel-RACExtensions', '>= 0.2.1'
+
+    # 集成工具
+    pod 'MJRefresh', '>= 0.0.1'
+    pod 'SVProgressHUD', '>= 1.1.2'
+    pod 'DateTools', '>= 1.7.0'
+    pod 'SOMotionDetector', '>= 1.0.1'
+    pod 'AliyunOSSiOS', '~> 2.1.2'
+    pod 'SDWebImage-ProgressView', '>= 0.4.0'
+    pod 'SDWebImage', '~> 3.7.5'
+    pod 'MWPhotoBrowser', '~> 2.1.1'
+    pod 'MMPReactiveNotification', '~> 0.4.1' # APNS RAC版本
+
+    # 分享&登录
+    pod 'ShareSDK3'
+    pod 'MOBFoundation'
+    pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
+    pod 'ShareSDK3/ShareSDKPlatforms/QQ'
+    # pod 'ShareSDK3/ShareSDKPlatforms/SinaWeibo'
+    # pod 'ShareSDK3/ShareSDKPlatforms/GooglePlus'
+    # pod 'ShareSDK3/ShareSDKPlatforms/RenRen'
+    # pod 'ShareSDK3/ShareSDKPlatforms/AliPaySocial'
+    # pod 'ShareSDK3/ShareSDKPlatforms/Kakao'
+    
+    pod 'JPush', '~> 1.8.8'
+    
+    # Animate
+    pod 'POP+MCAnimate', '>= 2.0'
+end
+
+target :AppTests, :exclusive => true do
+    pod 'KIF-Kiwi', '>= 0.2.4'
+    pod 'KIF+XBAdditions', '>= 0.1.5'
+    pod 'KIFViewControllerActions', '>= 1.0.0' 
+    pod 'Nocilla', '>= 0.10.0'
+end 

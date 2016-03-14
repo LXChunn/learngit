@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="XPHeadView"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="nne-6F-1s1" customClass="XPHeadView">
+            <rect key="frame" x="0.0" y="0.0" width="462" height="250"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" tag="20" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="me_top_background" translatesAutoresizingMaskIntoConstraints="NO" id="nfq-2l-Oxa">
+                    <rect key="frame" x="-3" y="0.0" width="468" height="250"/>
+                    <animations/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" tag="9" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common_default_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="0fd-7w-cQt">
+                    <rect key="frame" x="174" y="90" width="114" height="114"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="114" id="94B-28-GKl"/>
+                        <constraint firstAttribute="height" constant="114" id="dGp-Og-xSP"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="57"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" tag="22" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的资料" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCS-1U-pOh">
+                    <rect key="frame" x="195" y="29" width="72" height="22"/>
+                    <animations/>
+                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </label>
+                <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mG0-O6-f3p">
+                    <rect key="frame" x="0.0" y="29" width="60" height="22"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="rdc-BY-5F2"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
+                    <state key="normal" image="common_back_arrow"/>
+                </button>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="0fd-7w-cQt" firstAttribute="centerX" secondItem="nfq-2l-Oxa" secondAttribute="centerX" id="3yY-to-yHs"/>
+                <constraint firstItem="mG0-O6-f3p" firstAttribute="centerY" secondItem="zCS-1U-pOh" secondAttribute="centerY" id="5Qv-0l-JxX"/>
+                <constraint firstAttribute="trailing" secondItem="nfq-2l-Oxa" secondAttribute="trailing" constant="-3" id="Jvr-uV-bri"/>
+                <constraint firstItem="nfq-2l-Oxa" firstAttribute="leading" secondItem="nne-6F-1s1" secondAttribute="leading" constant="-3" id="NUx-sp-kBU"/>
+                <constraint firstItem="zCS-1U-pOh" firstAttribute="centerX" secondItem="0fd-7w-cQt" secondAttribute="centerX" id="UFw-6O-6dr"/>
+                <constraint firstAttribute="bottom" secondItem="nfq-2l-Oxa" secondAttribute="bottom" id="UpG-Pd-PZW"/>
+                <constraint firstAttribute="bottom" secondItem="nfq-2l-Oxa" secondAttribute="bottom" id="WQ2-tO-zZ3"/>
+                <constraint firstItem="nfq-2l-Oxa" firstAttribute="leading" secondItem="nne-6F-1s1" secondAttribute="leading" constant="-3" id="X2P-Me-TKE"/>
+                <constraint firstItem="0fd-7w-cQt" firstAttribute="top" secondItem="zCS-1U-pOh" secondAttribute="bottom" constant="39" id="ZqM-2B-Ger"/>
+                <constraint firstItem="nfq-2l-Oxa" firstAttribute="top" secondItem="nne-6F-1s1" secondAttribute="top" id="a7g-4f-hmh"/>
+                <constraint firstItem="mG0-O6-f3p" firstAttribute="leading" secondItem="nne-6F-1s1" secondAttribute="leading" id="k6A-6e-y5B"/>
+                <constraint firstItem="nfq-2l-Oxa" firstAttribute="top" secondItem="nne-6F-1s1" secondAttribute="top" id="kEQ-XN-c9F"/>
+                <constraint firstAttribute="bottom" secondItem="0fd-7w-cQt" secondAttribute="bottom" constant="46" id="lmS-qT-vv9"/>
+                <constraint firstAttribute="trailing" secondItem="nfq-2l-Oxa" secondAttribute="trailing" constant="-3" id="r0V-EM-Dul"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="364" y="575"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="common_back_arrow" width="11" height="20"/>
+        <image name="common_default_avatar" width="55" height="56"/>
+        <image name="me_top_background" width="374" height="153"/>
+    </resources>
+</document>

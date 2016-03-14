@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="XPOtherPostCell" rowHeight="229" id="KGk-i7-Jjw" customClass="XPOtherPostCell">
+            <rect key="frame" x="0.0" y="0.0" width="408" height="180"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="408" height="179"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BO5-GT-Loa">
+                        <rect key="frame" x="21" y="16" width="374" height="23"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.2784313725" green="0.2784313725" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tny-4o-s2A">
+                        <rect key="frame" x="26" y="50" width="358" height="94"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="94" id="nON-ou-UsJ"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvY-ep-cbE">
+                        <rect key="frame" x="21" y="177" width="374" height="1"/>
+                        <animations/>
+                        <color key="backgroundColor" red="0.83137254900000002" green="0.83137254900000002" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="3Bq-6V-0A3"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="lIb-uw-HmO"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.83137254900000002" green="0.83137254900000002" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZE9-fa-pUp">
+                        <rect key="frame" x="324" y="8" width="61" height="61"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="61" id="xTQ-9S-pwY"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="label_household" translatesAutoresizingMaskIntoConstraints="NO" id="Wif-F8-KaJ">
+                        <rect key="frame" x="21" y="148" width="68" height="22"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="68" id="1Go-OW-fck"/>
+                            <constraint firstAttribute="height" constant="22" id="XEL-pL-WXo"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thJ-Tl-4fa">
+                        <rect key="frame" x="97" y="151" width="303" height="18"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="303" id="x9H-Bq-Qb6"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <animations/>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="thJ-Tl-4fa" secondAttribute="bottom" constant="2" id="6Eu-Gf-PTk"/>
+                    <constraint firstAttribute="bottom" secondItem="wvY-ep-cbE" secondAttribute="bottom" constant="1" id="BnF-C8-HN2"/>
+                    <constraint firstAttribute="trailing" secondItem="wvY-ep-cbE" secondAttribute="trailing" constant="13" id="DDX-m6-9rK"/>
+                    <constraint firstItem="thJ-Tl-4fa" firstAttribute="top" secondItem="Tny-4o-s2A" secondAttribute="bottom" constant="7" id="I1J-yH-eyi"/>
+                    <constraint firstItem="wvY-ep-cbE" firstAttribute="top" secondItem="Wif-F8-KaJ" secondAttribute="bottom" constant="7" id="S8Q-2e-C1g"/>
+                    <constraint firstItem="Tny-4o-s2A" firstAttribute="top" secondItem="BO5-GT-Loa" secondAttribute="bottom" constant="11" id="Sa7-pA-e36"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="BO5-GT-Loa" secondAttribute="trailing" constant="5" id="Zru-v3-aFN"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ZE9-fa-pUp" secondAttribute="trailing" constant="15" id="eIz-fm-RHj"/>
+                    <constraint firstItem="Tny-4o-s2A" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="50" id="hi6-y6-JfG"/>
+                    <constraint firstItem="Wif-F8-KaJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="21" id="jLx-0b-siM"/>
+                    <constraint firstItem="Tny-4o-s2A" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="18" id="k8e-9q-pDk"/>
+                    <constraint firstItem="BO5-GT-Loa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="13" id="lhw-df-dn5"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="thJ-Tl-4fa" secondAttribute="trailing" id="ob9-B4-aFN"/>
+                    <constraint firstItem="thJ-Tl-4fa" firstAttribute="leading" secondItem="Wif-F8-KaJ" secondAttribute="trailing" constant="8" id="qLl-xk-gd5"/>
+                    <constraint firstItem="BO5-GT-Loa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="sz2-Ig-UNc"/>
+                    <constraint firstItem="Wif-F8-KaJ" firstAttribute="top" secondItem="Tny-4o-s2A" secondAttribute="bottom" constant="4" id="tGd-3y-bEO"/>
+                    <constraint firstItem="wvY-ep-cbE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="21" id="uSu-B5-8qG"/>
+                    <constraint firstItem="ZE9-fa-pUp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="wXE-oK-3la"/>
+                    <constraint firstItem="thJ-Tl-4fa" firstAttribute="top" secondItem="ZE9-fa-pUp" secondAttribute="bottom" constant="82" id="xmt-Iu-QzB"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Tny-4o-s2A" secondAttribute="trailing" constant="16" id="zA0-U6-zKX"/>
+                </constraints>
+            </tableViewCellContentView>
+            <animations/>
+            <connections>
+                <outlet property="picHeightLayout" destination="nON-ou-UsJ" id="BAK-dM-gyN"/>
+                <outlet property="picView" destination="Tny-4o-s2A" id="zcl-VO-vyR"/>
+                <outlet property="statusImgaeView" destination="ZE9-fa-pUp" id="axg-eA-Fhe"/>
+                <outlet property="timeLabel" destination="thJ-Tl-4fa" id="CAn-ju-wxl"/>
+                <outlet property="titleLabel" destination="BO5-GT-Loa" id="ajH-DJ-Yyi"/>
+                <outlet property="typeImageView" destination="Wif-F8-KaJ" id="9Qt-Cg-0Zl"/>
+            </connections>
+            <point key="canvasLocation" x="365" y="287"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="label_household" width="77" height="24"/>
+    </resources>
+</document>
