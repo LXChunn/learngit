@@ -4,6 +4,8 @@ import UIKit
 
 var str = "Hello, playground"
 print("hello World")
+
+
 /*
 sdd
 
@@ -29,3 +31,15 @@ currentLoginAttempt = 5
 var x = 1.0,y = 2.0,z = 3.0
 
 let PI = 3.14159, SPEEODFLIGHT = 300_00
+
+let PI1:Float = 3.123456789
+let PI2:Double = 3.12345678910111213
+
+
+
+
+
+
+
+
+
