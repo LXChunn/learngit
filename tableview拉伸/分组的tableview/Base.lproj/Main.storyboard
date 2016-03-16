@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="HXF-JA-4yA">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="8wV-M5-NJ9" customClass="TableViewCell">
+                                        <rect key="frame" x="0.0" y="49.5" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8wV-M5-NJ9" id="uLf-OX-RKU">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="NTw-iG-clc">
+                                                    <rect key="frame" x="340" y="6" width="120" height="29"/>
+                                                    <gestureRecognizers/>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VgP-8w-JLX">
+                                                    <rect key="frame" x="470" y="6" width="120" height="29"/>
+                                                    <color key="backgroundColor" red="1" green="0.1538404673051067" blue="0.098800876705347873" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <action selector="action:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bFe-ZO-lIe"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="VgP-8w-JLX" firstAttribute="leading" secondItem="NTw-iG-clc" secondAttribute="trailing" constant="10" id="51E-BE-Qgb"/>
+                                                <constraint firstAttribute="trailing" secondItem="VgP-8w-JLX" secondAttribute="trailing" constant="10" id="Mrh-gh-3sT"/>
+                                                <constraint firstItem="VgP-8w-JLX" firstAttribute="top" secondItem="uLf-OX-RKU" secondAttribute="top" constant="6" id="NDc-xF-RiM"/>
+                                                <constraint firstAttribute="bottom" secondItem="NTw-iG-clc" secondAttribute="bottom" constant="8.5" id="Sqe-Gk-bIs"/>
+                                                <constraint firstItem="VgP-8w-JLX" firstAttribute="width" secondItem="NTw-iG-clc" secondAttribute="width" id="dTn-Fw-44W"/>
+                                                <constraint firstItem="VgP-8w-JLX" firstAttribute="height" secondItem="NTw-iG-clc" secondAttribute="height" id="s2v-oI-UGg"/>
+                                                <constraint firstItem="NTw-iG-clc" firstAttribute="top" secondItem="uLf-OX-RKU" secondAttribute="top" constant="6" id="vpO-sN-Wfg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstItem="NTw-iG-clc" firstAttribute="width" secondItem="8wV-M5-NJ9" secondAttribute="width" multiplier="1:5" id="h1C-Qf-V7H"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="btn" destination="VgP-8w-JLX" id="i7l-YT-08y"/>
+                                            <outlet property="image" destination="NTw-iG-clc" id="vWF-fJ-Bi8"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="bkd-ld-ZD6"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Y6t-Pv-MrU"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="HXF-JA-4yA" secondAttribute="trailing" id="3JZ-Fv-5Cf"/>
+                            <constraint firstItem="HXF-JA-4yA" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ZBV-Dv-7Qq"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="HXF-JA-4yA" secondAttribute="bottom" id="fXJ-vz-yb4"/>
+                            <constraint firstItem="HXF-JA-4yA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="nnP-qG-CsB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="HXF-JA-4yA" id="1XS-NR-gJz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <customObject id="eGn-aN-SAz" customClass="XCViewController"/>
+            </objects>
+            <point key="canvasLocation" x="554" y="312"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="1" width="580" height="851"/>
+    </resources>
+</document>
