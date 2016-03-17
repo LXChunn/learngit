@@ -9,6 +9,16 @@
 #import "ViewController.h"
 @import WebKit;
 
+//@interface AAA : NSObject
+//- (void)BBB;
+//@end
+//@implementation AAA
+//- (void)BBB
+//{
+//    NSLog(@"good");
+//}
+//@end
+
 @interface ViewController ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 @property (nonatomic, strong) WKWebView *webView;
 @end
@@ -57,13 +67,23 @@
         NSDictionary* dict = message.body;
         NSString* className = dict[@"A"];
         NSString* functionNAme = dict[@"B"];
-        NSString* classNM = [[[NSBundle mainBundle]objectForInfoDictionaryKey:@"CFBundleName"] stringByAppendingFormat:@"%@",className];
-        Class clSS = NSClassFromString(classNM);
-        
+        Class clSS = NSClassFromString(className);
+        NSLog(@" %@",clSS);
+        if ([clSS isKindOfClass:[NSObject class]]) {
+            NSLog(@"类找到");
+            id obj = [[clSS alloc]init];
+            if ([obj respondsToSelector:@selector(BBB)]) {
+                [obj performSelector:@selector(BBB)];
+                NSLog(@"方法实现");
+                
+            }
+            
+        }else{
+            NSLog(@"类未找到");
+            NSLog(@"方法未实现");
+        }
         
     }
-    
-    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
