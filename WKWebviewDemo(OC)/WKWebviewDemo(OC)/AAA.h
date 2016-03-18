@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface AAA : NSObject
-- (void)BBB;
+//- (void)BBB;
 @end

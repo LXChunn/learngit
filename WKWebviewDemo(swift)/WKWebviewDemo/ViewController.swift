@@ -27,22 +27,28 @@ class ViewController: UIViewController, WKNavigationDelegate,WKUIDelegate,WKScri
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         let conf = WKWebViewConfiguration()
+        //注册js
         conf.userContentController.addScriptMessageHandler(self, name: "LXC")
         self.wk = WKWebView(frame: self.view.frame,configuration: conf)
+        
         
         self.wk?.navigationDelegate = self
         self.wk?.UIDelegate = self
         
         self.wk.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.baidu.com/")!))
+        
+//        self.runPluginJS(["Console"])
         self.view.addSubview(self.wk)
     }
+    
     //WKScriptMessageHandler
+    //js调用app
     func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage)
     {
         print(message.name)
         print(message.body.description)
         
-        var function = "" , clasS = ""
+        var function = "" , clasS  = ""
         if message.name == "LXC"{
             if let dict = message.body as? NSDictionary,
             className = dict["A"]?.description,
@@ -50,9 +56,9 @@ class ViewController: UIViewController, WKNavigationDelegate,WKUIDelegate,WKScri
                     if let clss = NSClassFromString(NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName")!.description + "." + className)as? NSObject.Type{
                         clasS = "类找到"
                         let obj = clss.init()
-                        let functionSeletor = Selector(functionName)
-                        if obj.respondsToSelector(functionSeletor){
-                            obj.performSelector(functionSeletor)
+                        
+                        if obj.respondsToSelector(NSSelectorFromString(functionName)){
+                            obj.performSelector(NSSelectorFromString(functionName))
                             function = "方法找到"
                         }else{
                             function = "方法未找到"
@@ -78,7 +84,7 @@ class ViewController: UIViewController, WKNavigationDelegate,WKUIDelegate,WKScri
         }
         
         //定时
-        NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("someSeletor"), userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: Selector("someSeletor"), userInfo: nil, repeats: false)
         
     }
     
@@ -116,9 +122,6 @@ class ViewController: UIViewController, WKNavigationDelegate,WKUIDelegate,WKScri
         }))
         
         self.presentViewController(alert, animated: true, completion: nil)
-
-        //定时5秒
-        NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: Selector("someSeletor"), userInfo: nil, repeats: false)
         
     }
 //
@@ -140,7 +143,7 @@ class ViewController: UIViewController, WKNavigationDelegate,WKUIDelegate,WKScri
         let alert = UIAlertController(title: prompt, message: defaultText, preferredStyle: .Alert)
         
         alert.addTextFieldWithConfigurationHandler { (textField: UITextField) -> Void in
-            textField.textColor = UIColor.redColor()
+            textField.placeholder = "请输入内容"
         }
         alert.addAction(UIAlertAction(title: "确定", style: .Default, handler: { (_) -> Void in
             // 处理好之前，将值传到js端
@@ -152,13 +155,17 @@ class ViewController: UIViewController, WKNavigationDelegate,WKUIDelegate,WKScri
     //privateMethod
     func someSeletor()
     {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true) { () -> Void in
+            //app调用js
+            self.wk.evaluateJavaScript("alert('刘小椿')", completionHandler: nil)
+            
+        }
     }
     
 }
 //新建的类
 class AAA:NSObject {
     func BBB(){
-        print("反射成功")
+        print("成功")
     }
 }

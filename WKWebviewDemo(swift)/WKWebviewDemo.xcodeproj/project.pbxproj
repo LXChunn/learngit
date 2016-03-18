@@ -14,6 +14,7 @@
 		4F23F0D81C9A3E63002DF03F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F23F0D61C9A3E63002DF03F /* LaunchScreen.storyboard */; };
 		4F23F0E31C9A3E64002DF03F /* WKWebviewDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F23F0E21C9A3E64002DF03F /* WKWebviewDemoTests.swift */; };
 		4F23F0EE1C9A3E64002DF03F /* WKWebviewDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F23F0ED1C9A3E64002DF03F /* WKWebviewDemoUITests.swift */; };
+		4F23F1441C9BDFB7002DF03F /* Console.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F23F1421C9BDFB7002DF03F /* Console.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		4F23F0E91C9A3E64002DF03F /* WKWebviewDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WKWebviewDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F23F0ED1C9A3E64002DF03F /* WKWebviewDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebviewDemoUITests.swift; sourceTree = "<group>"; };
 		4F23F0EF1C9A3E64002DF03F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F23F1421C9BDFB7002DF03F /* Console.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Console.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		4F23F0CC1C9A3E63002DF03F /* WKWebviewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				4F23F1411C9BDFB7002DF03F /* www */,
 				4F23F0CD1C9A3E63002DF03F /* AppDelegate.swift */,
 				4F23F0CF1C9A3E63002DF03F /* ViewController.swift */,
 				4F23F0D11C9A3E63002DF03F /* Main.storyboard */,
@@ -123,6 +126,22 @@
 				4F23F0EF1C9A3E64002DF03F /* Info.plist */,
 			);
 			path = WKWebviewDemoUITests;
+			sourceTree = "<group>";
+		};
+		4F23F1411C9BDFB7002DF03F /* www */ = {
+			isa = PBXGroup;
+			children = (
+				4F23F1421C9BDFB7002DF03F /* Console.js */,
+				4F23F1431C9BDFB7002DF03F /* plugins */,
+			);
+			path = www;
+			sourceTree = "<group>";
+		};
+		4F23F1431C9BDFB7002DF03F /* plugins */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = plugins;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +248,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F23F1441C9BDFB7002DF03F /* Console.js in Resources */,
 				4F23F0D81C9A3E63002DF03F /* LaunchScreen.storyboard in Resources */,
 				4F23F0D51C9A3E63002DF03F /* Assets.xcassets in Resources */,
 				4F23F0D31C9A3E63002DF03F /* Main.storyboard in Resources */,
@@ -482,6 +502,7 @@
 				4F23F0F41C9A3E64002DF03F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4F23F0F51C9A3E64002DF03F /* Build configuration list for PBXNativeTarget "WKWebviewDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +511,7 @@
 				4F23F0F71C9A3E64002DF03F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4F23F0F81C9A3E64002DF03F /* Build configuration list for PBXNativeTarget "WKWebviewDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +520,7 @@
 				4F23F0FA1C9A3E64002DF03F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
