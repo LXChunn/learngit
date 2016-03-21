@@ -55,13 +55,13 @@
 }
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
-    NSLog(@"didStartProvisionalNavigation");
+    NSLog(@"页面开始加载");
 }
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
-    NSLog(@"didCommitNavigation");
+    NSLog(@"当内容开始");
 }
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    NSLog(@"didFinishNavigation");
+    NSLog(@"页面加载完成");
 }
 
 #pragma mark - WKScriptMessageHandler

@@ -10,6 +10,9 @@ import UIKit
 import WebKit
 import Foundation
 class ViewController: UIViewController, WKNavigationDelegate,WKUIDelegate,WKScriptMessageHandler{
+    @IBOutlet weak var gobackBtn: UIButton!
+    @IBOutlet weak var forwardBtn: UIButton!
+    @IBOutlet weak var progress: UIProgressView!
 
     var wk :WKWebView!
     override func viewDidLoad() {
@@ -26,19 +29,28 @@ class ViewController: UIViewController, WKNavigationDelegate,WKUIDelegate,WKScri
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
         let conf = WKWebViewConfiguration()
         //注册js
         conf.userContentController.addScriptMessageHandler(self, name: "LXC")
-        self.wk = WKWebView(frame: self.view.frame,configuration: conf)
+        self.wk = WKWebView(frame: CGRectMake(0, 100, self.view.frame.size.width, self.view.frame.size.height - 100),configuration: conf)
         
         
         self.wk?.navigationDelegate = self
         self.wk?.UIDelegate = self
         
         self.wk.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.baidu.com/")!))
-        
-//        self.runPluginJS(["Console"])
         self.view.addSubview(self.wk)
+        
+        
+        
+        //允许手势，后退前进等操作
+        self.wk.allowsBackForwardNavigationGestures = true
+        
+        //监听是否可以前进后退，修改btn.enable属性
+        self.wk.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
+        //监听加载进度
+        self.wk.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
     }
     
     //WKScriptMessageHandler
@@ -89,17 +101,33 @@ class ViewController: UIViewController, WKNavigationDelegate,WKUIDelegate,WKScri
     }
     
     //navigationdelegate
+//    func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void)
+//    {
+//        
+//    }
+//    func webView(webView: WKWebView, decidePolicyForNavigationResponse navigationResponse: WKNavigationResponse, decisionHandler: (WKNavigationResponsePolicy) -> Void)
+//    {
+//        
+//    }
+
+    func webView(webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!)
+    {
+        print("接收到服务器跳转请求之后调用")
+        
+    }
+    
     func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!)
     {
+        self.progress.progress = 0.0
         print("启动了。。。")
     }
     func webView(webView: WKWebView, didCommitNavigation navigation: WKNavigation!)
     {
-        print("didCommitNavigation")
+        print("内容开始返回")
     }
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!)
     {
-        print("didFinishNavigation")
+        print("页面加载完成")
     }
     /*
      * 错误回调
@@ -152,6 +180,35 @@ class ViewController: UIViewController, WKNavigationDelegate,WKUIDelegate,WKScri
         
         self.presentViewController(alert, animated: true, completion: nil)
     }
+    //重写kvo方法
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if (keyPath == "loading") {
+            self.gobackBtn.enabled = self.wk.canGoBack
+            self.forwardBtn.enabled = self.wk.canGoForward
+        }
+        if (keyPath == "estimatedProgress") {
+            
+//            self.progress.hidden = self.wk.estimatedProgress == 1
+            self.progress.setProgress(Float(self.wk.estimatedProgress), animated: true)
+            
+        }
+    }
+    
+    @IBAction func goBack(sender: AnyObject) {
+        self.progress.progress = 0.0
+        self.wk.goBack()
+    }
+    @IBAction func refresh(sender: AnyObject) {
+        self.progress.progress = 0.0
+        let request = NSURLRequest(URL: self.wk.URL!)
+        self.wk.loadRequest(request)
+    }
+    @IBAction func goForward(sender: AnyObject) {
+        self.progress.progress = 0.0
+        self.wk.goForward()
+    }
+
+    
     //privateMethod
     func someSeletor()
     {
