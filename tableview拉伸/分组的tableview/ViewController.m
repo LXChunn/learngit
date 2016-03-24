@@ -111,6 +111,7 @@
     
     cell.btn.backgroundColor = [UIColor blueColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.textLabel.text = @"LXC";
     cell.backgroundColor = [UIColor clearColor];
     return cell;
