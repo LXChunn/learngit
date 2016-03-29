@@ -61,6 +61,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wCp-OF-sNM">
                                 <rect key="frame" x="58" y="433" width="205" height="127"/>
                             </imageView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vOE-3U-1Sl">
+                                <rect key="frame" x="56" y="209" width="51" height="31"/>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -71,6 +74,7 @@
                         <outlet property="loadBtn" destination="q62-th-aRG" id="IcD-EG-KkF"/>
                         <outlet property="otherImage" destination="wCp-OF-sNM" id="Nsx-Vw-cZj"/>
                         <outlet property="showObsever" destination="xJn-Ex-Lh3" id="8xR-dl-XJX"/>
+                        <outlet property="switchChange" destination="vOE-3U-1Sl" id="cTx-u7-DWm"/>
                         <outlet property="textPassword" destination="K7A-a4-upr" id="jte-Wr-1MT"/>
                         <outlet property="textUser" destination="Apa-tl-Vms" id="aBp-t9-YUW"/>
                     </connections>
@@ -160,9 +164,11 @@
                         <outlet property="textOne" destination="VBp-i8-pQN" id="asv-3T-i0C"/>
                         <outlet property="textThree" destination="90X-mw-blr" id="Vhd-JB-1jF"/>
                         <outlet property="textTwo" destination="Ne9-3D-JXg" id="Vga-lt-TC3"/>
+                        <outlet property="viewC" destination="bOo-IJ-Qaa" id="PxP-sB-cgJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S8g-or-nXp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="bOo-IJ-Qaa" customClass="ViewController"/>
             </objects>
             <point key="canvasLocation" x="327" y="240"/>
         </scene>

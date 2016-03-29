@@ -11,16 +11,18 @@
 #import "AFNetworking.h"
 #import "UIKit+AFNetworking.h"
 #import "XCViewModel.h"
-
+#import "secondViewController.h"
 
 @interface ViewController ()<UITextFieldDelegate>
 {
     int count;
-    
 }
+@property (nonatomic,strong)secondViewController* secondVc;
+
 @property (nonatomic,strong)RACCommand* command;
 @property (weak, nonatomic) IBOutlet UIImageView *imageVw;
 @property (weak, nonatomic) IBOutlet UIImageView *otherImage;
+@property (weak, nonatomic) IBOutlet UISwitch *switchChange;
 
 @property (nonatomic,strong)XCViewModel* viewModel;
 
@@ -177,6 +179,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.secondVc = [[secondViewController alloc]init];
+    
+    @weakify(self)
+    [[self.switchChange rac_signalForControlEvents:UIControlEventValueChanged]subscribeNext:^(id x) {
+        @strongify(self)
+        
+        if (self.isSwitch) {
+            self.isSwitch = NO;
+        }else {
+            self.isSwitch = YES;
+        }
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"switchChange" object:[NSNumber numberWithBool:self.isSwitch]];
+    }];
+    
     self.viewModel = [[XCViewModel alloc]init];
     [[RACObserve(self.viewModel, list) ignore:nil] subscribeNext:^(id x) {
         NSLog(@"%@",x);
@@ -269,7 +285,6 @@
 //    __weak ViewController* bself = self;//防止弱引用
     
     //用户名输入的响应
-    @weakify(self);
     [[self.textUser.rac_textSignal map:^id(NSString* value) {
         NSLog(@"用户名＝%@",value);
         self.liu = value;
